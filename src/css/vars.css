@@ -1,0 +1,101 @@
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #6c1d5f;
+  --ifm-color-primary-dark: #611a55;
+  --ifm-color-primary-darker: #5c1951;
+  --ifm-color-primary-darkest: #4c1442;
+  --ifm-color-primary-light: #772069;
+  --ifm-color-primary-lighter: #d5bbd1;
+  --ifm-color-primary-lightest: #fff7fd;
+
+  --ifm-color-secondary: #faa73a;
+  --ifm-color-secondary-dark: #e88d15;
+
+  --xef-color-secondary: #faa73a;
+  --xef-color-secondary-dark: #e88d15;
+
+  --xef-grey-primary: #2c2251;
+  --xef-grey-secondary: #57607b;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-font-family-base: 'Inter', open sans, sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --ifm-line-height-base: 1.5;
+
+  --ifm-heading-color: var(--xef-grey-primary);
+  --ifm-font-color-base: var(--xef-grey-primary);
+
+  --ifm-color-content-secondary: var(--xef-grey-secondary);
+
+  --ifm-link-hover-color: var(--ifm-color-primary-dark);
+  --ifm-link-hover-decoration: none;
+
+  --ifm-hover-overlay: #be24cf0a;
+  --ifm-toc-border-color: #7724cf3d;
+
+  --ifm-color-info-contrast-background: #e7f2f9;
+  --ifm-color-secondary-contrast-background: #eaeefb;
+  --ifm-color-success-contrast-background: #e7f5eb;
+  --ifm-color-warning-contrast-background: #fef1df;
+  --ifm-color-danger-contrast-background: #fee5df;
+
+  --ifm-hr-background-color: none;
+
+  --ifm-pagination-nav-color-hover: var(--ifm-color-primary-lighter);
+
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-padding-vertical: 0;
+
+  --ifm-global-shadow-lw: 0px 8px 12px 2px rgba(0, 0, 0, 0.06);
+
+  --ifm-global-radius: 0;
+
+  --ifm-global-spacing: 1.5rem;
+
+  --ifm-heading-margin-bottom: calc(var(--ifm-spacing-vertical) / 2);
+
+  --ifm-button-padding-vertical: 0.75rem;
+
+  --ifm-toc-padding-vertical: 0.75rem;
+
+  --ifm-card-vertical-spacing: var(--ifm-global-spacing);
+  --ifm-card-horizontal-spacing: var(--ifm-global-spacing);
+
+  --ifm-avatar-photo-size: 4rem;
+
+  --ifm-alert-shadow: none;
+  --ifm-alert-border-left-width: 0;
+
+  --ifm-menu-color-active: var(--ifm-color-white);
+  --ifm-menu-color-background-active: var(--ifm-color-primary);
+  --ifm-menu-link-padding-vertical: calc(var(--ifm-spacing-vertical) / 3);
+  --ifm-menu-link-padding-horizontal: var(--ifm-spacing-horizontal);
+
+  --ifm-footer-background-color: var(--ifm-color-white);
+  --ifm-footer-link-color: var(--xef-grey-primary);
+  --ifm-footer-padding-vertical: calc(3 * var(--ifm-spacing-vertical));
+
+  --ifm-navbar-search-input-background-color: var(--ifm-color-primary-lightest);
+
+  --search-local-modal-background: var(--ifm-color-primary-lightest);
+  --search-local-modal-shadow: var(--ifm-global-shadow-lw);
+  --search-local-hit-shadow: none;
+  --search-local-icon-stroke-width: 1;
+}
+
+.plugin-blog {
+  --ifm-avatar-photo-size: 2rem;
+}
+
+/* Custom Media query mimicking the one from Infima */
+@custom-media --ifm-narrow-window (max-width: 996px);
+
+@custom-media --xef-mobile-window (max-width: 768px);

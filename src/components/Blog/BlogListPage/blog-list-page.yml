@@ -1,0 +1,12 @@
+hero:
+  title: Blog
+  subtitle: The latest news, posts, and talks from the XEF community
+  ctaList:
+    - title: Learn more about XEF
+      href: /learn/overview
+
+banner:
+  title: Do you want to publish a new post?
+  ctaList:
+    - title: Contact us
+      href: https://github.com/xebia-functional/xef-website

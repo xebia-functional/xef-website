@@ -1,0 +1,28 @@
+hero:
+  title: XEF brings idiomatic <u>formal methods</u> to developers
+  ctaList:
+    - title: What is XEF
+      href: /learn/overview
+
+    - title: Get Started
+      href: /learn/quickstart
+
+features:
+  - title: Quickstart
+    href: /learn/quickstart
+    icon: icon-quickstart.svg
+    body: Gradle or Maven, JVM or Multiplatform, Arrow fits in all your projects
+
+  - title: Typed errors
+    href: /learn/typed-errors
+    icon: icon-typed-errors.svg
+    body: Structured, predictable, and efficient handling of errors
+
+quotes:
+  - name: George Popides
+    position: Software Engineer at Katanox
+    body: Our system consists of multiple services built with Kotlin and Spring Boot and the communication between the services is done through GRPC. The more services involved the more the failure points which means we need a streamlined way to handle failures and errors without affecting the operation of our system. [..] By using Either and Validated, we have eliminated unexpected exceptions in our system and we can now have a look on errors through our logs without worrying about unexpected exceptions that can bring our system down
+
+  - name: Ilyan Germanov
+    position: Co-founder of Ivy Apps
+    body: This week, I'm into sharing things that made my life as an Android developer with Kotlin easier. In my opinion, functional programming is an awesome paradigm and can be a first-class citizen in Kotlin. [..] Arrow is a "Functional companion to Kotlin's Standard Library" and provides the core constructs from the FP world to get you started.
