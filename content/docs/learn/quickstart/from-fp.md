@@ -61,7 +61,7 @@ mkPerson name age = Person <$> validName name <*> validAge age
 ```
 
 Kotlin doesn't provide such a generic construct. However, Arrow provides a similar
-syntax for [error types](../../typed-errors/working-with-typed-errors/).
+syntax for error types.
 
 - You must explicitly request to work with an error type, using `either`,
   `result`, or `nullable`, instead of `for`. Those functions live in
@@ -114,7 +114,7 @@ fun mkUser(name: String, age: Int): Either<Problem, Person> = either {
 It's common to use functions like `zip` to combine values inside a 
 wrapper, instead of a `for` comprehension. In Haskell this often takes
 the form of `(<$>)` and `(<*>)`. In Arrow we prefer to use blocks,
-except when [dealing with concurrency](../../coroutines/parallel/).
+except when dealing with concurrency.
 
 :::
 
@@ -139,7 +139,7 @@ popular Scala libraries like
 
 :::info Read more
 
-Our [_Design_](../../design/) section includes a [post](../../design/receivers-flatmap/)
+Our _Design_ section includes a post
 comparing the different approaches for effect handling.
 
 :::

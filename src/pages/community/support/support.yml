@@ -17,22 +17,22 @@ links:
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
   - title: Slack channel
-    href: /learn/immutable-data
+    href: /learn/quickstart
     icon: icon-immutable-data.svg
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
   - title: Stack Overflow
-    href: /learn/design
+    href: /learn/quickstart
     icon: icon-design.svg
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
   - title: Blog
-    href: /learn/design
+    href: /community/blog
     icon: icon-design.svg
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
   - title: Events
-    href: /learn/design
+    href: /community/events
     icon: icon-design.svg
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 

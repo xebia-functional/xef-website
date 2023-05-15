@@ -32,7 +32,7 @@ data class Book(val title: String, val authors: NonEmptyList<Author>)
 over which we want to implement the following rules:
 
 1. The given title should not be empty,
-2. The list of authors should [not be empty](../../collections-functions/non-empty/),
+2. The list of authors should not be empty,
 3. None of the author names should be empty.
 
 We want to accumulate as many error as possible.
