@@ -1,5 +1,5 @@
 .verticalRhythm {
-  margin-bottom: calc(2 * var(--ifm-spacing-vertical));
+  margin-bottom: calc(6 * var(--ifm-spacing-vertical));
 }
 
 /*
@@ -18,8 +18,9 @@
 .quotesContainer {
   composes: container from global;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
+  grid-template-columns: 1fr;
+  gap: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
+  justify-items: center;
 }
 
 .projectsContainer {
@@ -50,14 +51,25 @@
 }
 
 .usageWrapperContainer {
-  background-color: var(--ifm-color-primary-light);
+  background: var(--xef-gradient);
 }
 
 .usageContainer {
   display: flex;
   align-content: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
   flex-wrap: wrap;
   row-gap: var(--ifm-spacing-vertical);
+}
+
+.codeWrapperContainer {
+  background: var(--xef-gradient);
+  --ifm-tabs-color: var(--xef-semitransparent);
+  --ifm-tabs-color-active: var(--ifm-color-content);
+  --ifm-tabs-color-active-border: var(--ifm-color-content)
+}
+
+.codeContainer {
+  padding: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
 }

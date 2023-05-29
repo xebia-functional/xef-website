@@ -21,18 +21,22 @@ info:
 trainings:
   - title: Training 1
     subtitle: By Xebia Functional
+    href: /learn/overview
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada.
 
   - title: Training 2
     subtitle: By Xebia Functional
+    href: /learn/overview
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie
 
   - title: Training 3
     subtitle: By Xebia Functional
+    href: /learn/overview
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie
 
   - title: Training 4
     subtitle: By Xebia Functional
+    href: /learn/overview
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada.
 
 quotes:
@@ -63,7 +67,7 @@ navs:
     body: Lorem ipsum dolor sit amet, consectetur adipiscing eliorem ipsum dolor sit amet
 
 banner:
-  title: Want to know more about XEF?
+  title: Want to know more about xef?
   ctaList:
     - title: Read the docs
       href: /learn/overview

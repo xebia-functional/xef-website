@@ -38,7 +38,7 @@ export const StarsCount = () => {
             height="20px"
             width="20px"
           />
-          XEF • {stars.toLocaleString()}
+          xef.ai • {stars.toLocaleString()}
           <img
             src={starIconPath}
             className={styles.starIcon}

@@ -1,5 +1,6 @@
 .card {
   max-height: 25rem;
+  max-width: 60rem;
 }
 
 :local(.card) :global(.card__image) {
@@ -17,6 +18,7 @@
   mix-blend-mode: color;
   pointer-events: none;
   opacity: 0.8;
+  border-radius: var(--ifm-card-border-radius);
 }
 
 :local(.card) :global(.card__image)::after {
@@ -26,43 +28,53 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    112.64deg,
-    rgba(73, 123, 247, 0) 22.46%,
-    var(--ifm-color-primary-light) 81.52%
-  );
+  background: var(--xef-gradient);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.3;
+  border-radius: var(--ifm-card-border-radius);
 }
 
 .landscapeMode {
   flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.landscapeMode:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.landscapeMode:nth-child(even) .body{
+  padding: calc(4 * var(--ifm-spacing-horizontal)) calc(4 * var(--ifm-spacing-horizontal)) calc(4 * var(--ifm-spacing-horizontal)) 0;
 }
 
 .imageContainer {
-  flex-basis: 40%;
+  flex-basis: 50%;
   height: 40%;
 }
 
 .landscapeMode .imageContainer {
-  height: 100%;
+  height: 80%;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--ifm-card-border-radius);
 }
 
 .body {
-  flex-basis: 60%;
+  flex-basis: 50%;
   height: 60%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .landscapeMode .body {
   height: 100%;
+  padding: calc(4 * var(--ifm-spacing-horizontal)) 0 calc(4 * var(--ifm-spacing-horizontal)) calc(4 * var(--ifm-spacing-horizontal));
 }
 
 .title {
@@ -74,18 +86,14 @@
 
 .subtitle {
   font-weight: 400;
-  color: var(--xef-grey-secondary);
+  color: var(--xef-grey-primary);
 }
 
 .text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   overflow: hidden;
-}
-
-.linkContainer {
-  margin-top: auto;
 }
 
 .link::after {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const apiUrl = `https://api.github.com/repos/xebia-functional/xef-website`;
+const apiUrl = `https://api.github.com/repos/xebia-functional/xef`;
 const storageKey = 'xef-github-info';
 
 export function useGithubInfo() {

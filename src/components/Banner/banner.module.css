@@ -1,5 +1,5 @@
 .wrapperContainer {
-  background-color: var(--ifm-color-primary-lighter);
+  background: var(--xef-gradient);
 }
 
 .container {

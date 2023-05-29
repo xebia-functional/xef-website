@@ -17,7 +17,7 @@ const createConfig = async () => {
 
   /** @type {import('@docusaurus/types').Config} */
   const config = {
-    title: 'XEF',
+    title: 'xef.ai',
     tagline: 'AI',
     favicon: '/img/xef-brand-icon.svg',
     url: 'https://xef.ai',
@@ -78,7 +78,7 @@ const createConfig = async () => {
       ({
         image: '/img/social-card.jpg',
         colorMode: {
-          defaultMode: 'light',
+          defaultMode: 'dark',
           disableSwitch: true,
           respectPrefersColorScheme: false,
         },
@@ -89,7 +89,7 @@ const createConfig = async () => {
         },
         navbar: {
           logo: {
-            alt: 'XEF Logo',
+            alt: 'xef Logo',
             src: '/img/xef-brand.svg',
           },
           items: [
@@ -236,17 +236,24 @@ const createConfig = async () => {
             },
           ],
           logo: {
-            alt: 'XEF Logo',
+            alt: 'xef Logo',
             src: '/img/xef-brand.svg',
             href: 'https://xef.ai',
             width: 128,
             height: 42,
           },
-          copyright: `XEF is designed and developed by XEF with support from <a href="https://47deg.com" target="_blank" rel="noopener noreferrer">Xebia Functional</a>`,
+          copyright: `xef is designed and developed by xef with support from <a href="https://47deg.com" target="_blank" rel="noopener noreferrer">Xebia Functional</a>`,
         },
         prism: {
           theme: darkCodeTheme,
-          additionalLanguages: ['kotlin', 'java', 'groovy', 'scala', 'haskell'],
+          additionalLanguages: [
+            'kotlin',
+            'java',
+            'groovy',
+            'scala',
+            'haskell',
+            'rust',
+          ],
           defaultLanguage: 'kotlin',
         },
         mermaid: {
@@ -259,10 +266,10 @@ const createConfig = async () => {
               fontFamily:
                 "'Inter', open sans, sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
               fontSize: '14px',
-              primaryColor: '#4c1442',
+              primaryColor: '#006ba8',
               primaryTextColor: '#fff',
-              secondaryColor: '#e88d15',
-              lineColor: '#222e51',
+              secondaryColor: '#01a3ff',
+              lineColor: '#01c9bd',
             },
           },
         },

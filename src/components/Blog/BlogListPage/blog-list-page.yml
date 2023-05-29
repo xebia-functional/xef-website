@@ -1,8 +1,8 @@
 hero:
   title: Blog
-  subtitle: The latest news, posts, and talks from the XEF community
+  subtitle: The latest news, posts, and talks from the xef community
   ctaList:
-    - title: Learn more about XEF
+    - title: Learn more about xef
       href: /learn/overview
 
 banner:

@@ -1,5 +1,5 @@
 .quoteCard {
-  --ifm-card-background-color: var(--ifm-color-primary-lightest);
+  --ifm-card-background-color: var(--xef-color-secondary-dark);
   position: relative;
   border: none;
 }
@@ -10,7 +10,7 @@
 }
 
 .quoteCard::before {
-  background-image: url('@site/static/img/icon-quote.png');
+  background-image: url('@site/static/img/icon-quote.svg');
   background-repeat: no-repeat;
   background-size: var(--ifm-card-vertical-spacing) auto;
   background-position: var(--ifm-card-vertical-spacing) var(--ifm-card-vertical-spacing);

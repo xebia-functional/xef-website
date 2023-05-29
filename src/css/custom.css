@@ -14,6 +14,23 @@ table {
   width: 100%;
 }
 
+/* Custom emphasizing with gradient */
+.emphasize {
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--xef-gradient);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: none;
+}
+
+.emphasize:hover {
+  filter: hue-rotate(360deg);
+  transition: filter var(--xef-transition-slowest);
+}
+
 /* Custom classes for docs */
 .add-icon {
   color: var(--xef-icon);
@@ -22,7 +39,7 @@ table {
 
 /* Navbar */
 .plugin-docs .navbar {
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 2px solid var(--ifm-toc-border-color);
 }
 
 .navbar__inner {
@@ -62,7 +79,6 @@ table {
   [class*='dropdownMenu']
   [class*='suggestion'] {
   border-radius: var(--ifm-global-radius);
-  margin-bottom: 0;
 }
 
 .navbar__search
@@ -138,11 +154,11 @@ table {
   margin-top: -1rem;
 }
 
-/* Collapsible ToC */
-.theme-doc-toc-mobile[class*='tocCollapsible'] {
-  background-color: var(--ifm-color-primary-lightest);
+.table-of-contents__left-border {
+  border-left: 2px solid var(--ifm-toc-border-color);
 }
 
+/* Collapsible ToC */
 .theme-doc-toc-mobile [class*='tocCollapsibleButton'] {
   font-weight: 500;
 }
@@ -172,10 +188,13 @@ table {
   margin-left: 0;
 }
 
+.dropdown--right .dropdown__menu {
+  text-align: center;
+}
+
 .dropdown__menu {
   padding: 0;
   box-shadow: var(--ifm-global-shadow-lw);
-  border: 1px solid var(--ifm-toc-border-color);
 }
 
 .dropdown__link {
@@ -186,16 +205,30 @@ table {
 
 .hero {
   height: 600px;
-  text-align: center;
 }
 
 .button {
   font-family: var(--ifm-font-family-base);
 }
 
+.button--special {
+  background: var(--xef-gradient);
+  border-image: var(--xef-gradient) 1;
+  transition: filter var(--ifm-transition-slow);
+}
+
+.button--outline.button--special {
+  --ifm-button-color: var(--ifm-color-white);
+  background: transparent;
+}
+
+.button--special:hover {
+  filter: brightness(0.85) hue-rotate(45deg);
+  transition: filter var(--ifm-transition-slow);
+}
+
 /* Global styles for cards */
 .card {
-  border: 1px solid var(--ifm-color-primary-lighter);
   box-shadow: none;
   transition: box-shadow var(--ifm-transition-fast),
     transform var(--ifm-transition-fast);
@@ -203,7 +236,6 @@ table {
 
 .card:hover {
   box-shadow: var(--ifm-global-shadow-lw);
-  transform: translate3d(0px, -4px, 0px);
 }
 
 .pagination-nav__link {
@@ -222,12 +254,8 @@ table {
   padding: 0.5rem 1rem;
 }
 
-.tabs {
-  border-bottom: 1px solid var(--ifm-toc-border-color);
-}
-
-.footer {
-  border-top: 1px solid var(--ifm-color-primary-lighter);
+.plugin-docs .footer {
+  border-top: 2px solid var(--ifm-color-primary-darkest);
 }
 
 .footer__col {
@@ -284,6 +312,10 @@ code {
   color: var(--ifm-menu-color);
 }
 
+.plugin-docs .theme-doc-sidebar-container {
+  border-right: 2px solid var(--ifm-toc-border-color);
+}
+
 /*
  * The .menu__link--active class duplication is a subtle trick to increase the
  * specificity of this selector, as it would clash with an infima styling otherwise.
@@ -329,6 +361,14 @@ code {
   margin-top: 0;
 }
 
-.theme-back-to-top-button.theme-back-to-top-button::after {
+.theme-back-to-top-button.theme-back-to-top-button {
   background-color: var(--ifm-color-primary-darkest);
+}
+
+.theme-back-to-top-button.theme-back-to-top-button:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.theme-back-to-top-button.theme-back-to-top-button::after {
+  background-color: var(--ifm-color-white);
 }

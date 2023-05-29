@@ -1,6 +1,7 @@
 .hero {
   position: relative;
   z-index: 1;
+  height: calc(100vh - var(--ifm-navbar-height));
 }
 
 .hero::before {
@@ -16,7 +17,7 @@
   pointer-events: none;
   z-index: -1;
   transition: opacity var(--ifm-transition-fast);
-  opacity: 0.05;
+  opacity: 0.01;
 }
 
 .hero::after {
@@ -31,6 +32,7 @@
   pointer-events: none;
   z-index: -2;
   transition: opacity var(--ifm-transition-fast);
+  opacity: 0.1;
 }
 
 @media (--ifm-narrow-window) {
@@ -51,14 +53,8 @@
  *
  * https://github.com/facebook/docusaurus/issues/3678
  */
- .container.container {
-  max-width: 700px;
-}
-
-u {
-  text-decoration: none;
-  box-shadow: 0 4px var(--xef-color-secondary);
-  white-space: nowrap;
+ .max.max {
+  max-width: 600px;
 }
 
 @media (--xef-mobile-window) {
@@ -75,8 +71,8 @@ u {
   display: flex;
   flex-direction: row;
   gap: var(--ifm-spacing-horizontal);
-  justify-content: center;
-  margin-top: calc(2 * var(--ifm-spacing-vertical));
+  justify-content: flex-start; 
+  margin-top: calc(4 * var(--ifm-spacing-vertical));
 }
 
 @media (--xef-mobile-window) {

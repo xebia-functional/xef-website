@@ -8,6 +8,7 @@ interface Styled {
 interface Cta {
   title: string;
   href: string;
+  elementClassName?: string;
 }
 
 /*
