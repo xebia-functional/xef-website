@@ -2,6 +2,12 @@
   margin-bottom: calc(6 * var(--ifm-spacing-vertical));
 }
 
+@media (--xef-mobile-window) {
+  .verticalRhythm {
+    margin-bottom: calc(3 * var(--ifm-spacing-vertical));
+  }
+}
+
 /*
  * The .textContainer class duplication is a subtle trick to increase the specificity of
  * this selector, as it would clash with an Infima styling otherwise. CSS injection
@@ -71,5 +77,5 @@
 }
 
 .codeContainer {
-  padding: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
+  padding: calc(3 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
 }

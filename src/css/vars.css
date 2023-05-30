@@ -1,5 +1,6 @@
 :root[data-theme='dark'] {
   --xef-color-primary: #01c9bd;
+  --xef-color-primary-dark: #01a197;
 
   --xef-color-secondary: #01a3ff;
   --xef-color-secondary-dark: #006ba8;
@@ -69,6 +70,7 @@
   --ifm-button-color: var(--ifm-color-white);
   --ifm-button-padding-horizontal: 1.6rem;
   --ifm-button-padding-vertical: 0.75rem;
+  --ifm-button-transition-duration: var(--xef-transition-slowest);
 
   --ifm-toc-padding-vertical: 0.75rem;
 
@@ -77,12 +79,12 @@
   --ifm-alert-shadow: none;
   --ifm-alert-border-left-width: 0;
 
-  --ifm-menu-link-padding-vertical: calc(var(--ifm-spacing-vertical) / 3);
+  --ifm-menu-link-padding-vertical: var(--ifm-spacing-vertical);
   --ifm-menu-link-padding-horizontal: var(--ifm-spacing-horizontal);
 
   --ifm-footer-background-color: #000b1b;
   --ifm-footer-link-color: var(--xef-grey-primary);
-  --ifm-footer-padding-vertical: calc(3 * var(--ifm-spacing-vertical));
+  --ifm-footer-padding-vertical: calc(4 * var(--ifm-spacing-vertical));
 
   --ifm-navbar-search-input-background-color: #ffffff22;
 

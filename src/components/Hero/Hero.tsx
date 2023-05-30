@@ -19,20 +19,20 @@ export function Hero({
   return (
     <div className={`hero ${styles.hero} ${classNameProp}`}>
       <div className={`container`}>
-        <div className={`${styles.max}`}>
-          <h1 className="hero__title">{title}</h1>
-          {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
-          <div className={styles.ctaList}>
-            {ctaList &&
-              ctaList.map(({ title, href, elementClassName = '' }) => (
-                <Link
-                  key={title}
-                  href={href}
-                  className={`button button--primary button--lg ${elementClassName}`}>
-                  {title}
-                </Link>
-              ))}
-          </div>
+        <h1 className={`hero__title ${styles.max}`}>{title}</h1>
+        {subtitle && (
+          <h2 className={`${styles.subtitle} ${styles.max}`}>{subtitle}</h2>
+        )}
+        <div className={styles.ctaList}>
+          {ctaList &&
+            ctaList.map(({ title, href, elementClassName = '' }) => (
+              <Link
+                key={title}
+                href={href}
+                className={`button button--primary button--lg ${elementClassName}`}>
+                {title}
+              </Link>
+            ))}
         </div>
       </div>
     </div>

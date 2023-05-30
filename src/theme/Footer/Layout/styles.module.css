@@ -18,9 +18,9 @@
 .logo a {
   opacity: 1;
   display: block;
-  transition: transform var(--ifm-transition-fast);
+  transition: filter var(--ifm-transition-slow);
 }
 
 .logo a:hover {
-  transform: translate3d(0px, -4px, 0px);
+  filter: brightness(0.90) hue-rotate(45deg);
 }

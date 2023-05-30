@@ -29,7 +29,7 @@ export default function Home(): JSX.Element {
         </section>
         <section className={`${styles.codeWrapperContainer}`}>
           <div className={`container ${styles.codeContainer}`}>
-            <h1>Discover its potential</h1>
+            <h1 className="margin-bottom--lg">Discover its potential</h1>
             <Tabs>
               <TabItem value="scala" label="Scala">
                 <CodeBlock language="scala" showLineNumbers>

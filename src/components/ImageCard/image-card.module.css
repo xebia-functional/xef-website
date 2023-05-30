@@ -77,6 +77,21 @@
   padding: calc(4 * var(--ifm-spacing-horizontal)) 0 calc(4 * var(--ifm-spacing-horizontal)) calc(4 * var(--ifm-spacing-horizontal));
 }
 
+@media (--xef-mobile-window) {
+  .card {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .landscapeMode, .landscapeMode:nth-child(even) {
+    flex-direction: column;
+  }
+
+  .landscapeMode .body, .landscapeMode:nth-child(even) .body{
+    padding: calc(2 * var(--ifm-spacing-horizontal)) calc(1 * var(--ifm-spacing-horizontal)) calc(4 * var(--ifm-spacing-horizontal)) calc(1 * var(--ifm-spacing-horizontal));
+  }
+}
+
 .title {
   display: -webkit-box;
   -webkit-box-orient: vertical;

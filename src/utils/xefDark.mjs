@@ -57,7 +57,7 @@ const xefDark = {
       style: {
         color: 'var(--xef-color-secondary)',
         textShadow:
-          '0 0 2px #001716, 0 0 3px var(--xef-color-primary-darke), 0 0 5px var(--xef-color-primary-dark), 0 0 8px var(--xef-color-primary-dark)',
+          '0 0 2px #001716, 0 0 1px var(--ifm-color-primary-darkest), 0 0 1px var(--ifm-color-primary-darker), 0 0 3px var(--ifm-color-primary)',
       },
     },
     {
@@ -87,7 +87,7 @@ const xefDark = {
     {
       types: ['string', 'char', 'attr-value', 'regex', 'variable'],
       style: {
-        color: 'var(--xef-color-secondary)',
+        color: 'var(--xef-color-secondary-dark)',
       },
     },
     {

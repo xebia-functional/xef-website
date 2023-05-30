@@ -1,11 +1,17 @@
 .linkCard {
+  display: block;
+  border-radius: var(--ifm-card-border-radius);
   --ifm-link-hover-decoration: none;
   --ifm-link-color: var(--xef-grey-primary);
+  box-shadow: 0 0 4px #01c9bd11;
+  transition: box-shadow var(--ifm-transition-slow), filter var(--ifm-transition-slow), color var(--ifm-transition-slow);
 }
 
 .linkCard:hover {
   --ifm-heading-color: var(--ifm-color-primary-dark);
   --ifm-link-hover-color: var(--xef-grey-primary);
+  filter: hue-rotate(33deg);
+  box-shadow: 0 0 8px #01c9bd22;
 }
 
 .icon {
