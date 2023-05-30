@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -34,12 +35,12 @@ export function ImageCardBase({
         <img
           className={styles.image}
           src={image}
-          alt={`${title}`}
-          title={`${title}`}
+          alt={`${parse(title)}`}
+          title={`${parse(title)}`}
         />
       </div>
       <div className={`card__body ${styles.body}`}>
-        <h3 className={styles.title}>{title}</h3>
+        <h2 className={styles.title}>{parse(title)}</h2>
         <h5 className={styles.subtitle}>{subtitle}</h5>
         <p className={styles.text}>{body}</p>
         <strong className={styles.linkContainer}>

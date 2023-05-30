@@ -18,16 +18,18 @@ export function Hero({
 }: HeroProps): JSX.Element {
   return (
     <div className={`hero ${styles.hero} ${classNameProp}`}>
-      <div className={`container ${styles.container}`}>
-        <h1 className="hero__title">{title}</h1>
-        {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
+      <div className={`container`}>
+        <h1 className={`hero__title ${styles.max}`}>{title}</h1>
+        {subtitle && (
+          <h2 className={`${styles.subtitle} ${styles.max}`}>{subtitle}</h2>
+        )}
         <div className={styles.ctaList}>
           {ctaList &&
-            ctaList.map(({ title, href }) => (
+            ctaList.map(({ title, href, elementClassName = '' }) => (
               <Link
                 key={title}
                 href={href}
-                className="button button--primary button--lg">
+                className={`button button--primary button--lg ${elementClassName}`}>
                 {title}
               </Link>
             ))}

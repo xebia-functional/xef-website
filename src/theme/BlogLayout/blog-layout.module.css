@@ -3,7 +3,7 @@
 }
 
 .background::before {
-  background-image: url('@site/static/img/xef-brand-icon.svg');
+  background-image: url('@site/static/img/xef-brand-line-icon.svg');
   background-repeat: no-repeat;
   background-size: auto 150%;
   background-position: max(-400px, calc(100vw - 3000px)) bottom;
@@ -15,6 +15,7 @@
   pointer-events: none;
   z-index: -1;
   transition: opacity var(--ifm-transition-fast);
+  opacity: 0.4;
 }
 
 .background::after {
@@ -30,6 +31,7 @@
   pointer-events: none;
   z-index: -2;
   transition: opacity var(--ifm-transition-fast);
+  opacity: 0.8;
 }
 
 @media (--ifm-narrow-window) {

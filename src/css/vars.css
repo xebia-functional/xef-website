@@ -1,21 +1,36 @@
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #6c1d5f;
-  --ifm-color-primary-dark: #611a55;
-  --ifm-color-primary-darker: #5c1951;
-  --ifm-color-primary-darkest: #4c1442;
-  --ifm-color-primary-light: #772069;
-  --ifm-color-primary-lighter: #d5bbd1;
-  --ifm-color-primary-lightest: #fff7fd;
+:root[data-theme='dark'] {
+  --xef-color-primary: #01c9bd;
+  --xef-color-primary-dark: #01a197;
 
-  --ifm-color-secondary: #faa73a;
-  --ifm-color-secondary-dark: #e88d15;
+  --xef-color-secondary: #01a3ff;
+  --xef-color-secondary-dark: #006ba8;
 
-  --xef-color-secondary: #faa73a;
-  --xef-color-secondary-dark: #e88d15;
+  --xef-color-complementary: #ff5d01;
 
-  --xef-grey-primary: #2c2251;
-  --xef-grey-secondary: #57607b;
+  --xef-grey-primary: #bcc3cc;
+  --xef-grey-secondary: #90959c;
+
+  --xef-semitransparent: #ffffff99;
+
+  --xef-gradient: linear-gradient(62.54deg, #01c9bd 9.29%, #018ddc 91.64%);
+
+  --xef-transition-slowest: 1200ms;
+
+  --ifm-color-primary: #01c9bd;
+  --ifm-color-primary-dark: #01a197;
+  --ifm-color-primary-darker: #01978e;
+  --ifm-color-primary-darkest: #018981;
+  --ifm-color-primary-light: #01ddd0;
+  --ifm-color-primary-lighter: #01e7d9;
+  --ifm-color-primary-lightest: #09feef;
+
+  --ifm-color-secondary: var(--xef-color-secondary);
+
+  --ifm-background-color: #000b1b;
+  --ifm-background-surface-color: #000b1b;
+
+  --ifm-color-content: #f0f0f0;
+  --ifm-hero-text-color: #f0f0f0;
 
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
@@ -24,27 +39,19 @@
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
-  --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco,
+  --ifm-font-family-monospace: 'Fira Code', SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
 
+  --ifm-heading-font-weight: 600;
+  --ifm-heading-margin-bottom: calc(var(--ifm-spacing-vertical) / 2);
+
   --ifm-line-height-base: 1.5;
-
-  --ifm-heading-color: var(--xef-grey-primary);
-  --ifm-font-color-base: var(--xef-grey-primary);
-
-  --ifm-color-content-secondary: var(--xef-grey-secondary);
 
   --ifm-link-hover-color: var(--ifm-color-primary-dark);
   --ifm-link-hover-decoration: none;
 
-  --ifm-hover-overlay: #be24cf0a;
-  --ifm-toc-border-color: #7724cf3d;
-
-  --ifm-color-info-contrast-background: #e7f2f9;
-  --ifm-color-secondary-contrast-background: #eaeefb;
-  --ifm-color-success-contrast-background: #e7f5eb;
-  --ifm-color-warning-contrast-background: #fef1df;
-  --ifm-color-danger-contrast-background: #fee5df;
+  --ifm-hover-overlay: #7389a222;
+  --ifm-toc-border-color: #14929499;
 
   --ifm-hr-background-color: none;
 
@@ -53,39 +60,36 @@
   --ifm-navbar-height: 4rem;
   --ifm-navbar-shadow: none;
   --ifm-navbar-padding-vertical: 0;
+  --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
 
   --ifm-global-shadow-lw: 0px 8px 12px 2px rgba(0, 0, 0, 0.06);
 
-  --ifm-global-radius: 0;
+  --ifm-global-radius: 0.3rem;
+  --ifm-global-border-width: 4px;
 
-  --ifm-global-spacing: 1.5rem;
-
-  --ifm-heading-margin-bottom: calc(var(--ifm-spacing-vertical) / 2);
-
+  --ifm-button-color: var(--ifm-color-white);
+  --ifm-button-padding-horizontal: 1.6rem;
   --ifm-button-padding-vertical: 0.75rem;
+  --ifm-button-transition-duration: var(--xef-transition-slowest);
 
   --ifm-toc-padding-vertical: 0.75rem;
-
-  --ifm-card-vertical-spacing: var(--ifm-global-spacing);
-  --ifm-card-horizontal-spacing: var(--ifm-global-spacing);
 
   --ifm-avatar-photo-size: 4rem;
 
   --ifm-alert-shadow: none;
   --ifm-alert-border-left-width: 0;
 
-  --ifm-menu-color-active: var(--ifm-color-white);
-  --ifm-menu-color-background-active: var(--ifm-color-primary);
-  --ifm-menu-link-padding-vertical: calc(var(--ifm-spacing-vertical) / 3);
+  --ifm-menu-link-padding-vertical: var(--ifm-spacing-vertical);
   --ifm-menu-link-padding-horizontal: var(--ifm-spacing-horizontal);
 
-  --ifm-footer-background-color: var(--ifm-color-white);
+  --ifm-footer-background-color: #000b1b;
   --ifm-footer-link-color: var(--xef-grey-primary);
-  --ifm-footer-padding-vertical: calc(3 * var(--ifm-spacing-vertical));
+  --ifm-footer-padding-vertical: calc(4 * var(--ifm-spacing-vertical));
 
-  --ifm-navbar-search-input-background-color: var(--ifm-color-primary-lightest);
+  --ifm-navbar-search-input-background-color: #ffffff22;
 
-  --search-local-modal-background: var(--ifm-color-primary-lightest);
+  --search-local-modal-background: var(--ifm-background-color);
+  --search-local-hit-background: #ffffff22;
   --search-local-modal-shadow: var(--ifm-global-shadow-lw);
   --search-local-hit-shadow: none;
   --search-local-icon-stroke-width: 1;

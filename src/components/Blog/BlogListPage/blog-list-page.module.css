@@ -1,5 +1,5 @@
 .verticalRhythm {
-  margin-bottom: calc(2 * var(--ifm-spacing-vertical));
+  margin-bottom: calc(5 * var(--ifm-spacing-vertical));
 }
 
 .linksContainer {

@@ -41,7 +41,7 @@ export default function Libraries(): JSX.Element {
             <Link href="https://github.com/xebia-functional/xef-website/issues">
               {' hear '}
             </Link>
-            about other library which complements the XEF libraries and should
+            about other library which complements the xef libraries and should
             be featured here!
           </p>
         </section>

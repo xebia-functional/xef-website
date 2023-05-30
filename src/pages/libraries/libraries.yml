@@ -1,6 +1,6 @@
 hero:
   title: More libraries
-  subtitle: Libraries that complement the XEF ecosystem
+  subtitle: Libraries that complement the xef ecosystem
 
 libraries:
   - title: Quiver
@@ -20,12 +20,12 @@ libraries:
 
   - title: Parsus
     href: https://github.com/alllex/parsus
-    icon: icon-quote.png
+    icon: icon-quote.svg
     body: Parser-combinators with Kotlin Coroutines
 
 
 banner:
-  title: Want to know more about XEF?
+  title: Do you want to know more about xef.ai?
   ctaList:
     - title: Read the docs
       href: /learn/overview
