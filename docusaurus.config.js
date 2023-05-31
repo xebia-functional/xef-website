@@ -100,6 +100,36 @@ const createConfig = async () => {
               activeBaseRegex: '^/+$',
             },
             {
+              label: 'Overview',
+              to: '/learn/overview',
+              position: 'right',
+            },
+            {
+              type: 'dropdown',
+              label: 'Quickstart',
+              position: 'right',
+              items: [
+                {
+                  label: 'Kotlin',
+                  to: '/learn/quickstart/kotlin',
+                },
+                {
+                  label: 'Scala',
+                  to: '/learn/quickstart/scala',
+                },
+                {
+                  label: 'Examples',
+                  to: '/learn/examples',
+                },
+              ],
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/xebia-functional/xef',
+              position: 'right',
+            },
+            /*
+            {
               type: 'dropdown',
               label: 'Learn',
               to: '/learn/overview',
@@ -153,25 +183,13 @@ const createConfig = async () => {
                 },
               ],
             },
+            */
           ],
         },
         footer: {
           links: [
             {
               title: 'Menu',
-              items: [
-                {
-                  label: 'Libraries',
-                  to: '/libraries',
-                },
-                {
-                  label: 'Training',
-                  to: '/training',
-                },
-              ],
-            },
-            {
-              title: 'Learn',
               items: [
                 {
                   label: 'Overview',
@@ -181,9 +199,22 @@ const createConfig = async () => {
                   label: 'Quickstart',
                   to: '/learn/quickstart',
                 },
+              ],
+            },
+            {
+              title: 'Quickstart',
+              items: [
                 {
-                  label: 'Typed errors',
-                  to: '/learn/typed-errors',
+                  label: 'Kotlin',
+                  to: '/learn/quickstart/kotlin',
+                },
+                {
+                  label: 'Scala',
+                  to: '/learn/quickstart/scala',
+                },
+                {
+                  label: 'Examples',
+                  to: '/learn/examples',
                 },
               ],
             },

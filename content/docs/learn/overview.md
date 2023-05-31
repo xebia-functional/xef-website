@@ -11,36 +11,24 @@ import DocCardList from '@theme/DocCardList';
 
 # <decorated-text icon={frontMatter.sidebar_custom_props.icon} title={frontMatter.title} />
 
-Arrow aims to bring _idiomatic_ _functional programming_ to Kotlin. This means Arrow is inspired by the great work made in other functional programming communities, yet exposes these ideas and concepts in ways that do not feel alien to Kotlin programmers.
+In recent months, the world of AI has changed drastically. The impact of the
+general availability of Large Language Models, like [ChatGPT](https://chat.openai.com/),
+is hard to overstate. These only complement existing techniques in
+image generation, classification, speech recognition, and many others. At the
+time of writing this post, [Hugging Face Hub](https://huggingface.co/models), the leading repository of models, has more than 200,000 of them! The challenge is how to 
+integrate these techniques into a broader system. AI is not a goal in itself but
+a tool in your journey to offer the best experience to your customers.
 
-Arrow comprises different libraries, each improving or extending one commonly-used library in the Kotlin ecosystem or a particular Kotlin language feature.
+The possibilities are endless: Summarize the most important events in the
+customer's account. Generate queries to the database from a natural language
+description. Help customer service provide a sequence of steps to resolve an
+issue. Identify the important parts of a PDF invoice. These are tasks where AI
+can make an impact *now*.
 
-:::info In a rush?
+However, the ecosystem is quite fragmented, usually requiring a different library for
+each different service. This is where [xef.ai](https://xef.ai) enters the game:
+a project whose goal is to offer a convenient interface to these modern AI
+techniques so your team can quickly move from ideas to proofs of concepts to 
+integrating AI into your business processes.
 
-Our [quickstart](../quickstart) is designed to help you find your way in the Arrow ecosystem.
-
-:::
-
-<DocCardList className="margin-bottom--lg" items={useDocsSidebar().items.filter(item => item.customProps?.overview )}/>
-
-
-Each section in the documentation roughly corresponds to one of the libraries that compose Arrow.
-
-- In our [Quickstart](../quickstart), you can read how to introduce Arrow in your project.
-- No library lives in a vacuum, and Arrow enjoys integrations with many other popular Kotlin libraries.
-- We also provide guidance on broader design and architecture using functional programming concepts.
-
-| Library | Features |
-| --- | --- |
-| `arrow-core` <br /> _Companion to [Kotlin's standard library](https://kotlinlang.org/api/latest/jvm/stdlib/)_ | [Typed errors](../typed-errors/), including `Raise`, `Either`, and `Option` <br /> Non-empty collections <br /> Utilities for functions and memoization |
-| `arrow-fx-coroutines` <br /> _Companion to [KotlinX Coroutines](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/)_ | High-level concurrency, including `parMap` and `parZip` <br /> Resource management |
-| `arrow-resilience` | Resilience patterns |
-| `arrow-fx-stm` | Software Transactional Memory (STM) |
-| `arrow-optics` + `arrow-optics-ksp-plugin` <br /> _Companion to [data](https://kotlinlang.org/docs/data-classes.html) and [sealed](https://kotlinlang.org/docs/sealed-classes.html) classes_ | Utilities for immutable data |
-| `arrow-atomic` <br /> _Multiplatform-ready [references](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.native.concurrent/-atomic-reference/)_ | Atomic references |
-
-:::note We'd love to hear from you!
-
-We're always looking for ways to improve the libraries and the documentation. Feel free to [open an issue](https://github.com/arrow-kt/arrow/issues) in our repository with any suggestions or feedback. Thanks in advance! 🤩
-
-:::
+Just bring xef.ai in your project, connect it to the right AI models and data sources, and start asking questions. 

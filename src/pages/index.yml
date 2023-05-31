@@ -1,33 +1,30 @@
 hero:
-  title: "Program <span class='emphasize'>&lt;faster&gt;</span> with the ultimate artificial intelligence assistant."
+  title: "<span class='emphasize'>&lt;Modern AI&gt;</span> made easy."
   ctaList:
     - title: What is xef
       href: /learn/overview
-      elementClassName: button--special button--outline
-
-    - title: Get Started
-      href: /learn/quickstart
       elementClassName: button--special
+
+    - title: Quickstart
+      href: /learn/quickstart
+      elementClassName: button--special button--outline
 
 features:
   - title: "Discover <span class='emphasize'>xef.ai</span>"
-    href: /learn/quickstart
+    href: /learn/overview
     image: /img/xef-logo-loop-animation.gif
-    body: The library that turbocharges your code with lightning-fast AI capabilities.
-      Boost your productivity, eliminate errors, and enhance security, all while saving precious production time.
-      Experience the future of coding.
-
-  - title: "Learn <span class='emphasize'>xef.ai</span>"
-    href: /learn/typed-errors
-    image: /img/xef-logo-loop-animation.gif
-    body: The library that turbocharges your code with lightning-fast AI capabilities.
-      Boost your productivity, eliminate errors, and enhance security, all while saving precious production time.
-      Experience the future of coding.
+    body: xef.ai offers a convenient interface to modern AI techniques, 
+      including Large Language Models,
+      so your team can quickly move from ideas to proofs of concept
+      to integrating AI in your business processes.
 
   - title: "Try <span class='emphasize'>xef.ai</span>"
-    href: /learn/typed-errors
+    href: /learn/overview
     image: /img/xef-logo-loop-animation.gif
-    body: The library that turbocharges your code with lightning-fast AI capabilities.
-      Boost your productivity, eliminate errors, and enhance security, all while saving precious production time.
-      Experience the future of coding.
+    body: 
+      Summarize the most important events in the customer's account. 
+      Generate queries to the database from a natural language description.
+      Identify the important parts of a PDF invoice.
+      The possibilities are endless.
+
 
