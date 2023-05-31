@@ -218,6 +218,7 @@ const createConfig = async () => {
                 },
               ],
             },
+            /*
             {
               title: 'Community',
               items: [
@@ -235,6 +236,7 @@ const createConfig = async () => {
                 },
               ],
             },
+            */
             {
               title: 'Links',
               items: [

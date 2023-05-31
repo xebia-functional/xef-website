@@ -12,7 +12,7 @@ links:
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
   - title: GitHub
-    href: /learn/typed-errors
+    href: https://github.com/xebia-functional/xef
     icon: icon-typed-errors.svg
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium ligula nec mi facilisis malesuada. Donec sed massa finibus, laoreet tellus vel...
 
