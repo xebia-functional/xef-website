@@ -18,6 +18,8 @@ export interface ImageCardOptionsProps extends ImageCardProps {
   landscapeMode: boolean;
 }
 
+const templateElement = document.createElement('template');
+
 export function ImageCardBase({
   title = 'Case study',
   subtitle,
@@ -26,6 +28,10 @@ export function ImageCardBase({
   href,
   landscapeMode = false,
 }: ImageCardOptionsProps) {
+  templateElement.innerHTML = title.trim();
+  const stringTitle = templateElement.content.textContent;
+  const parsedTitle = parse(title);
+
   return (
     <div
       className={`card ${styles.card} ${
@@ -35,12 +41,12 @@ export function ImageCardBase({
         <img
           className={styles.image}
           src={image}
-          alt={`${parse(title)}`}
-          title={`${parse(title)}`}
+          alt={`${stringTitle}`}
+          title={`${stringTitle}`}
         />
       </div>
       <div className={`card__body ${styles.body}`}>
-        <h2 className={styles.title}>{parse(title)}</h2>
+        <h2 className={styles.title}>{parsedTitle}</h2>
         <h5 className={styles.subtitle}>{subtitle}</h5>
         <p className={styles.text}>{body}</p>
         <strong className={styles.linkContainer}>

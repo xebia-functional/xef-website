@@ -18,7 +18,7 @@ const createConfig = async () => {
   /** @type {import('@docusaurus/types').Config} */
   const config = {
     title: 'xef.ai',
-    tagline: 'AI',
+    tagline: 'Bring modern AI everywhere!',
     favicon: '/img/xef-brand-icon.svg',
     url: 'https://xef.ai',
     baseUrl: '/',

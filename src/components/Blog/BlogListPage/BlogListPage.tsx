@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {
   PageMetadata,
@@ -76,8 +77,8 @@ function BlogListPageContent(props: Props): JSX.Element {
         <section
           className={`margin-top--md margin-bottom--md ${styles.linksContainer}`}>
           <Link href="/community/blog/archive">Archive</Link>
-          <Link href="/community/blog/atom.xml">Atom feed</Link>
-          <Link href="/community/blog/rss.xml">RSS feed</Link>
+          <a href={useBaseUrl('/community/blog/atom.xml')}>Atom feed</a>
+          <a href={useBaseUrl('/community/blog/rss.xml')}>RSS Feed</a>
         </section>
       </main>
     </Layout>
