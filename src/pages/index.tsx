@@ -20,7 +20,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout description={siteConfig.tagline}>
       <Hero title={parse(data.hero.title)} ctaList={data.hero.ctaList} />
-      <main>
+      <main id="discover">
         <section
           className={`${styles.featuresContainer} ${styles.verticalRhythm}`}>
           {data.features.map((feature: LinkCardProps) => (
