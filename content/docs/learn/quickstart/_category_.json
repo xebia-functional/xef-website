@@ -3,7 +3,7 @@
   "position": 2,
   "customProps": {
     "icon": "icon-quickstart.svg",
-    "description": "Gradle or Maven, JVM or Multiplatform, Arrow fits in all your projects",
+    "description": "xef.ai provides support for both Kotlin and Scala",
     "overview": true
   }
 }
