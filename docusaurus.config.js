@@ -245,11 +245,13 @@ const createConfig = async () => {
                   href: 'https://twitter.com/xebiafunctional',
                   icon: '/img/icon-social-twitter.svg',
                 },
+                /*
                 {
                   label: 'Slack',
                   href: 'https://slack-chats.kotlinlang.org/c/arrow',
                   icon: '/img/icon-social-slack.svg',
                 },
+                */
                 {
                   label: 'YouTube',
                   href: 'https://www.youtube.com/@xebiafunctional',
@@ -257,7 +259,7 @@ const createConfig = async () => {
                 },
                 {
                   label: 'GitHub',
-                  href: 'https://github.com/xebia-functional',
+                  href: 'https://github.com/xebia-functional/xef',
                   icon: '/img/icon-social-github.svg',
                 },
                 {

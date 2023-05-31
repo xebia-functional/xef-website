@@ -8,7 +8,7 @@ description: Get xef.ai up and running in Scala
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart (Scala)
+# Quickstart - Scala <img src="https://www.scala-lang.org/resources/img/frontpage/scala-spiral.png" style={{ height: "2.5rem" }} alt="Scala logo" />
 
 ## Getting the libraries
 

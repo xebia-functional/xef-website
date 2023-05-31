@@ -8,7 +8,7 @@ description: Get xef.ai up and running in Kotlin
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart (Kotlin)
+# Quickstart - Kotlin <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Kotlin_Icon_2021.svg" style={{ height: "2rem" }} alt="Kotlin logo" />
 
 ## Getting the libraries
 
