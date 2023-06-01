@@ -8,7 +8,7 @@ import { useGithubInfo } from '@site/src/utils/useGithubInfo';
 
 import styles from './stars-count.module.css';
 
-const githubLink = 'https://github.com/xebia-functional/xef-website';
+const githubLink = 'https://github.com/xebia-functional/xef';
 const icon = '/img/icon-social-github.svg';
 const starIcon = '/img/icon-star.svg';
 
