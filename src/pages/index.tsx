@@ -44,6 +44,7 @@ export default function Home(): JSX.Element {
                   {`final case class Population(size: Int, description: String) derives ScalaSerialDescriptor, Decoder
 
                   final case class Image(description: String, url: String) derives ScalaSerialDescriptor, Decoder
+
                   @main def runPopulation: Unit =
 ai {
   val cadiz: Population = prompt("Population of Cádiz, Spain.")
