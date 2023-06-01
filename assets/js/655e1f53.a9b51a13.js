@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkxef_website=self.webpackChunkxef_website||[]).push([[46],{34750:e=>{e.exports=JSON.parse('{"label":"core","permalink":"/community/blog/tags/core","allTagsPath":"/community/blog/tags","count":1}')}}]);

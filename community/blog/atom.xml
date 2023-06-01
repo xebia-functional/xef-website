@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xef.ai/community/blog</id>
+    <title>xef.ai Blog</title>
+    <updated>2022-05-15T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://xef.ai/community/blog"/>
+    <subtitle>xef.ai Blog</subtitle>
+    <icon>https://xef.ai/img/xef-brand-icon.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Test]]></title>
+        <id>https://xef.ai/community/blog/2022/05/15/test</id>
+        <link href="https://xef.ai/community/blog/2022/05/15/test"/>
+        <updated>2022-05-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[@uris77 explains how to use Try in real world examples.]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://github.com/uris77" target="_blank" rel="noopener noreferrer">@uris77</a> explains how to use <a href="https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-try/" target="_blank" rel="noopener noreferrer">Try</a> in real world examples.</p><p><a href="https://www.spantree.net/blog/2017/09/15/kotlin-exception-handling-with-kategory.html" target="_blank" rel="noopener noreferrer">Handling Kotlin Exceptions with Arrow – A Functional Approach</a></p>]]></content>
+        <category label="core" term="core"/>
+        <category label="articles" term="articles"/>
+    </entry>
+</feed>
