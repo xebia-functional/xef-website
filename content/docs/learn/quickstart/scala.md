@@ -138,7 +138,7 @@ import io.circe.parser.decode
 
 private final case class Book(name: String, author: String, summary: String) derives ScalaSerialDescriptor, Decoder
 
-def summarizeBook(title: String, author: String)(using scope: AIScope): Book =
+def summarizeBook(title: String, author: String): AI[Book] =
   prompt(s"$title by $author summary.")
 
 @main def runBook: Unit =
@@ -171,12 +171,11 @@ and make its response part of the context. One such agent is `search`, which use
 search service to enrich that context.
 
 ```scala
-import com.xebia.functional.xef.scala.agents.DefaultSearch
 import com.xebia.functional.xef.scala.auto.*
+import com.xebia.functional.xef.scala.agents.DefaultSearch
 import com.xebia.functional.xef.scala.auto.ScalaSerialDescriptorContext.given
-import io.circe.Decoder
 
-private def getQuestionAnswer(question: String)(using scope: AIScope): List[String] =
+private def getQuestionAnswer(question: String): AI[List[String]] =
   contextScope(DefaultSearch.search("Weather in Cádiz, Spain")) {
     promptMessage(question)
   }
@@ -191,7 +190,7 @@ private def getQuestionAnswer(question: String)(using scope: AIScope): List[Stri
 
 The underlying mechanism of the context is a _vector store_, a data structure which
 saves a set of strings, and is able to find those similar to another given one.
-By default xef.ai uses an _in-memory_ vector store, since it provides maximum
+By default, xef.ai uses an _in-memory_ vector store, since it provides maximum
 compatibility across platforms. However, if you foresee your context growing above
 the hundreds of elements, you may consider switching to another alternative, like
 Lucene or PostgreSQL.
