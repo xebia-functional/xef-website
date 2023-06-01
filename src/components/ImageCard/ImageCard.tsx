@@ -13,6 +13,7 @@ export interface ImageCardProps {
   image?: string;
   body?: string;
   href?: string;
+  linkText?: string;
   overlay?: boolean;
 }
 
@@ -29,6 +30,7 @@ export function ImageCardBase({
   image = useBaseUrl('/img/sample-image.jpg'),
   body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie',
   href,
+  linkText = 'Learn more',
   landscapeMode = false,
   overlay = true,
 }: ImageCardOptionsProps) {
@@ -77,7 +79,7 @@ export function ImageCardBase({
         <p className={styles.text}>{body}</p>
         <strong className={styles.linkContainer}>
           <Link href={href} className={styles.link}>
-            Learn more
+            {linkText}
           </Link>
         </strong>
       </div>
