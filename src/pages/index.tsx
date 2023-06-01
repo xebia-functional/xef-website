@@ -43,16 +43,16 @@ export default function Home(): JSX.Element {
                 <CodeBlock language="scala" showLineNumbers>
                   {`final case class Population(size: Int, description: String) derives ScalaSerialDescriptor, Decoder
 
-                  final case class Image(description: String, url: String) derives ScalaSerialDescriptor, Decoder
+final case class Image(description: String, url: String) derives ScalaSerialDescriptor, Decoder
 
-                  @main def runPopulation: Unit =
-ai {
-  val cadiz: Population = prompt("Population of Cádiz, Spain.")
-  val seattle: Population = prompt("Population of Seattle, WA.")
-  println(s"The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
-  val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
-  println(s"Image \${img.description} available at \${img.url}")
-}`}
+@main def runPopulation: Unit =
+  ai {
+    val cadiz: Population = prompt("Population of Cádiz, Spain.")
+    val seattle: Population = prompt("Population of Seattle, WA.")
+    println(s"The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
+    val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
+    println(s"Image \${img.description} available at \${img.url}")
+  }`}
                 </CodeBlock>
               </TabItem>
               <TabItem value="kotlin" label="Kotlin">
