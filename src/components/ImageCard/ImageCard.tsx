@@ -68,6 +68,7 @@ export function ImageCardBase({
             autoPlay
             loop
             muted
+            playsInline
             disablePictureInPicture>
             {`${stringTitle} video`}
           </video>

@@ -236,6 +236,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 4rem;
 }
 
+@media (--xef-mobile-window) {
+  .hero__title {
+    font-size: 3rem;
+  }
+}
+
 .button {
   font-family: var(--ifm-font-family-base);
   transition: border-color var(--ifm-transition-slow), background-color var(--ifm-transition-slow), filter var(--ifm-transition-slow);
