@@ -19,8 +19,9 @@ features:
       to integrating AI in your business processes.
 
   - title: "Try <span class='emphasize'>xef.ai</span>"
-    href: /learn/overview
+    href: /learn/quickstart
     image: /img/xef-logo-loop-animation.gif
+    linkText: Get started
     body: 
       Summarize the most important events in the customer's account. 
       Generate queries to the database from a natural language description.

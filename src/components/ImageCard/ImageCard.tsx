@@ -12,6 +12,7 @@ export interface ImageCardProps {
   image?: string;
   body?: string;
   href?: string;
+  linkText?: string;
 }
 
 export interface ImageCardOptionsProps extends ImageCardProps {
@@ -25,6 +26,7 @@ export function ImageCardBase({
   body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie',
   href,
   landscapeMode = false,
+  linkText = 'Learn more',
 }: ImageCardOptionsProps) {
   return (
     <div
@@ -45,7 +47,7 @@ export function ImageCardBase({
         <p className={styles.text}>{body}</p>
         <strong className={styles.linkContainer}>
           <Link href={href} className={styles.link}>
-            Learn more
+            {linkText}
           </Link>
         </strong>
       </div>
