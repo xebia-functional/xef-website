@@ -25,7 +25,7 @@
 }
 
 .cardBody {
-  padding: calc(var(--ifm-card-vertical-spacing) / 2) var(--ifm-card-vertical-spacing) var(--ifm-card-vertical-spacing) var(--ifm-card-vertical-spacing);
+  padding: calc(var(--ifm-card-vertical-spacing) * 2) var(--ifm-card-vertical-spacing) var(--ifm-card-vertical-spacing) var(--ifm-card-vertical-spacing);
 }
 
 .paragraph {

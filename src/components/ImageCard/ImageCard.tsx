@@ -1,4 +1,5 @@
 import React from 'react';
+import * as cheerio from 'cheerio';
 import parse from 'html-react-parser';
 
 import Link from '@docusaurus/Link';
@@ -13,11 +14,15 @@ export interface ImageCardProps {
   body?: string;
   href?: string;
   linkText?: string;
+  overlay?: boolean;
 }
 
 export interface ImageCardOptionsProps extends ImageCardProps {
   landscapeMode: boolean;
 }
+
+const videoExtensions = ['.mpg', '.mpeg', '.mp4', '.ogv', '.webm'];
+const imageExtensions = ['.gif', '.jpg', '.jpeg', '.png'];
 
 export function ImageCardBase({
   title = 'Case study',
@@ -25,24 +30,51 @@ export function ImageCardBase({
   image = useBaseUrl('/img/sample-image.jpg'),
   body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie',
   href,
-  landscapeMode = false,
   linkText = 'Learn more',
+  landscapeMode = false,
+  overlay = true,
 }: ImageCardOptionsProps) {
+  const imageExtension = `.${image.split('.').pop()}`;
+  const isVideo = videoExtensions.includes(imageExtension);
+  const isImage = imageExtensions.includes(imageExtension);
+
+  const parsedTitle = parse(title);
+  const stringTitle = cheerio.load(title).text();
+
   return (
     <div
       className={`card ${styles.card} ${
         landscapeMode && styles.landscapeMode
       }`}>
-      <div className={`card__image ${styles.imageContainer}`}>
-        <img
-          className={styles.image}
-          src={image}
-          alt={`${parse(title)}`}
-          title={`${parse(title)}`}
-        />
+      <div
+        className={`card__image ${styles.imageContainer} ${
+          overlay ? styles.overlay : ''
+        }`}>
+        {isImage && (
+          <img
+            className={styles.image}
+            src={image}
+            alt={`${stringTitle}`}
+            title={`${stringTitle}`}
+          />
+        )}
+        {isVideo && (
+          <video
+            className={styles.image}
+            width="100%"
+            height="100%"
+            src={image}
+            title={`${stringTitle}`}
+            autoPlay
+            loop
+            muted
+            disablePictureInPicture>
+            {`${stringTitle} video`}
+          </video>
+        )}
       </div>
       <div className={`card__body ${styles.body}`}>
-        <h2 className={styles.title}>{parse(title)}</h2>
+        <h2 className={styles.title}>{parsedTitle}</h2>
         <h5 className={styles.subtitle}>{subtitle}</h5>
         <p className={styles.text}>{body}</p>
         <strong className={styles.linkContainer}>

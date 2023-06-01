@@ -12,7 +12,7 @@ hero:
 features:
   - title: "Discover <span class='emphasize'>xef.ai</span>"
     href: /learn/overview
-    image: /img/xef-logo-loop-animation.gif
+    image: /img/ilus-1.png
     body: xef.ai offers a convenient interface to modern AI techniques, 
       including Large Language Models,
       so your team can quickly move from ideas to proofs of concept
@@ -20,7 +20,7 @@ features:
 
   - title: "Try <span class='emphasize'>xef.ai</span>"
     href: /learn/quickstart
-    image: /img/xef-logo-loop-animation.gif
+    image: /img/xef-logo-animation-1sec-loop-720p.webm
     linkText: Get started
     body: 
       Summarize the most important events in the customer's account. 
