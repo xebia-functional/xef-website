@@ -12,11 +12,15 @@ export interface ImageCardProps {
   image?: string;
   body?: string;
   href?: string;
+  overlay?: boolean;
 }
 
 export interface ImageCardOptionsProps extends ImageCardProps {
   landscapeMode: boolean;
 }
+
+const videoExtensions = ['.mpg', '.mpeg', '.mp4', '.ogv', '.webm'];
+const imageExtensions = ['.gif', '.jpg', '.jpeg', '.png'];
 
 const templateElement = document.createElement('template');
 
@@ -27,7 +31,12 @@ export function ImageCardBase({
   body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie',
   href,
   landscapeMode = false,
+  overlay = true,
 }: ImageCardOptionsProps) {
+  const imageExtension = `.${image.split('.').pop()}`;
+  const isVideo = videoExtensions.includes(imageExtension);
+  const isImage = imageExtensions.includes(imageExtension);
+
   templateElement.innerHTML = title.trim();
   const stringTitle = templateElement.content.textContent;
   const parsedTitle = parse(title);
@@ -37,13 +46,31 @@ export function ImageCardBase({
       className={`card ${styles.card} ${
         landscapeMode && styles.landscapeMode
       }`}>
-      <div className={`card__image ${styles.imageContainer}`}>
-        <img
-          className={styles.image}
-          src={image}
-          alt={`${stringTitle}`}
-          title={`${stringTitle}`}
-        />
+      <div
+        className={`card__image ${styles.imageContainer} ${
+          overlay ? styles.overlay : ''
+        }`}>
+        {isImage && (
+          <img
+            className={styles.image}
+            src={image}
+            alt={`${stringTitle}`}
+            title={`${stringTitle}`}
+          />
+        )}
+        {isVideo && (
+          <video
+            className={styles.image}
+            width="100%"
+            height="100%"
+            src={image}
+            autoPlay
+            loop
+            muted
+            disablePictureInPicture>
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
       <div className={`card__body ${styles.body}`}>
         <h2 className={styles.title}>{parsedTitle}</h2>

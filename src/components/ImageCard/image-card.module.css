@@ -3,11 +3,13 @@
   max-width: 60rem;
 }
 
-:local(.card) :global(.card__image) {
+/* :local(.card) :global(.card__image) { */
+.overlay {
   position: relative;
 }
 
-:local(.card) :global(.card__image)::before {
+/* :local(.card) :global(.card__image)::before { */
+.overlay::before {
   content: '';
   background-color: var(--ifm-color-primary-dark);
   position: absolute;
@@ -17,11 +19,12 @@
   left: 0;
   mix-blend-mode: color;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.3;
   border-radius: var(--ifm-card-border-radius);
 }
 
-:local(.card) :global(.card__image)::after {
+/* :local(.card) :global(.card__image)::after { */
+.overlay::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -30,7 +33,7 @@
   left: 0;
   background: var(--xef-gradient);
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.2;
   border-radius: var(--ifm-card-border-radius);
 }
 
@@ -49,12 +52,12 @@
 }
 
 .imageContainer {
-  flex-basis: 50%;
+  flex-basis: 48%;
   height: 40%;
 }
 
 .landscapeMode .imageContainer {
-  height: 80%;
+  height: 100%;
 }
 
 .image {
@@ -65,7 +68,7 @@
 }
 
 .body {
-  flex-basis: 50%;
+  flex-basis: 52%;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -93,6 +96,7 @@
 }
 
 .title {
+  font-size: 2rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

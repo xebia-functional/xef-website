@@ -108,6 +108,7 @@ const createConfig = async () => {
               type: 'dropdown',
               label: 'Quickstart',
               position: 'right',
+              to: '/learn/quickstart',
               items: [
                 {
                   label: 'Kotlin',
@@ -128,62 +129,6 @@ const createConfig = async () => {
               href: 'https://github.com/xebia-functional/xef',
               position: 'right',
             },
-            /*
-            {
-              type: 'dropdown',
-              label: 'Learn',
-              to: '/learn/overview',
-              position: 'right',
-              items: [
-                {
-                  label: 'Overview',
-                  to: '/learn/overview',
-                },
-                {
-                  label: 'Quickstart',
-                  to: '/learn/quickstart',
-                  activeBaseRegex: '^(/learn/quickstart)',
-                },
-                {
-                  label: 'Typed errors',
-                  to: '/learn/typed-errors',
-                  activeBaseRegex: '^(/learn/typed-errors)',
-                },
-              ],
-            },
-            {
-              label: 'Libraries',
-              to: '/libraries',
-              position: 'right',
-            },
-            {
-              label: 'Training',
-              to: '/training',
-              position: 'right',
-            },
-            {
-              type: 'dropdown',
-              label: 'Community',
-              position: 'right',
-              items: [
-                {
-                  label: 'Blog',
-                  to: '/community/blog',
-                  activeBaseRegex: '^(/community/blog)',
-                },
-                {
-                  label: 'Events',
-                  to: '/community/events',
-                  activeBaseRegex: '^(/community/events)',
-                },
-                {
-                  label: 'Support',
-                  to: '/community/support',
-                  activeBaseRegex: '^(/community/support)',
-                },
-              ],
-            },
-            */
           ],
         },
         footer: {
@@ -218,25 +163,6 @@ const createConfig = async () => {
                 },
               ],
             },
-            /*
-            {
-              title: 'Community',
-              items: [
-                {
-                  label: 'Blog',
-                  to: '/community/blog',
-                },
-                {
-                  label: 'Events',
-                  to: '/community/events',
-                },
-                {
-                  label: 'Support',
-                  to: '/community/support',
-                },
-              ],
-            },
-            */
             {
               title: 'Links',
               items: [
@@ -245,13 +171,6 @@ const createConfig = async () => {
                   href: 'https://twitter.com/xebiafunctional',
                   icon: '/img/icon-social-twitter.svg',
                 },
-                /*
-                {
-                  label: 'Slack',
-                  href: 'https://slack-chats.kotlinlang.org/c/arrow',
-                  icon: '/img/icon-social-slack.svg',
-                },
-                */
                 {
                   label: 'YouTube',
                   href: 'https://www.youtube.com/@xebiafunctional',

@@ -3,12 +3,14 @@ id: scala
 title: Scala
 sidebar_position: 2
 description: Get xef.ai up and running in Scala
+sidebar_custom_props:
+  icon: scala-icon.svg
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart - Scala <img src="https://www.scala-lang.org/resources/img/frontpage/scala-spiral.png" style={{ height: "2.5rem" }} alt="Scala logo" />
+# <decorated-text icon="scala-icon.svg" title="Quickstart - Scala" />
 
 ## Getting the libraries
 

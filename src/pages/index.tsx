@@ -19,12 +19,20 @@ export default function Home(): JSX.Element {
 
   return (
     <Layout description={siteConfig.tagline}>
-      <Hero title={parse(data.hero.title)} ctaList={data.hero.ctaList} />
+      <Hero
+        title={parse(data.hero.title)}
+        ctaList={data.hero.ctaList}
+        className="margin-bottom--xl"
+      />
       <main id="discover">
         <section
           className={`${styles.featuresContainer} ${styles.verticalRhythm}`}>
           {data.features.map((feature: LinkCardProps) => (
-            <ImageCardLandscape key={feature.title} {...feature} />
+            <ImageCardLandscape
+              key={feature.title}
+              {...feature}
+              overlay={false}
+            />
           ))}
         </section>
         <section className={`${styles.codeWrapperContainer}`}>
