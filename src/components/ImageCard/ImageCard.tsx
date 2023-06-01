@@ -1,4 +1,5 @@
 import React from 'react';
+import * as cheerio from 'cheerio';
 import parse from 'html-react-parser';
 
 import Link from '@docusaurus/Link';
@@ -22,8 +23,6 @@ export interface ImageCardOptionsProps extends ImageCardProps {
 const videoExtensions = ['.mpg', '.mpeg', '.mp4', '.ogv', '.webm'];
 const imageExtensions = ['.gif', '.jpg', '.jpeg', '.png'];
 
-const templateElement = document.createElement('template');
-
 export function ImageCardBase({
   title = 'Case study',
   subtitle,
@@ -37,9 +36,8 @@ export function ImageCardBase({
   const isVideo = videoExtensions.includes(imageExtension);
   const isImage = imageExtensions.includes(imageExtension);
 
-  templateElement.innerHTML = title.trim();
-  const stringTitle = templateElement.content.textContent;
   const parsedTitle = parse(title);
+  const stringTitle = cheerio.load(title).text();
 
   return (
     <div
@@ -64,11 +62,12 @@ export function ImageCardBase({
             width="100%"
             height="100%"
             src={image}
+            title={`${stringTitle}`}
             autoPlay
             loop
             muted
             disablePictureInPicture>
-            Your browser does not support the video tag.
+            {`${stringTitle} video`}
           </video>
         )}
       </div>
