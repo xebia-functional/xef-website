@@ -109,6 +109,19 @@ def book(topic: String): AIScope ?=> List[String] =
   promptMessage(s"Give me a selection of books about $topic")
 ```
 
+Using the type alias `AI`:
+
+```scala
+type AI[A] = AIScope ?=> A
+```
+
+book function can be written in this way:
+
+```scala
+def book(topic: String): AI[List[String]] = 
+  promptMessage(s"Give me a selection of books about $topic")
+```
+
 ## Structure
 
 The output from the `books` function above may be hard to parse back from the
