@@ -52,7 +52,7 @@ final case class Image(description: String, url: String) derives ScalaSerialDesc
     println(s"The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
     val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
     println(s"Image \${img.description} available at \${img.url}")
-  }`}
+  }.getOrElse(println)`}
                 </CodeBlock>
               </TabItem>
               <TabItem value="kotlin" label="Kotlin">
@@ -70,7 +70,7 @@ suspend fun main() =
         println("The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
         val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
         println("Image \${img.description} available at \${img.url}")
-    }.getOrThrow()
+    }.getOrElse { println(it) }
               `}
                 </CodeBlock>
               </TabItem>
