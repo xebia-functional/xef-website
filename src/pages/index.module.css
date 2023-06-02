@@ -25,7 +25,7 @@
   composes: container from global;
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
+  gap: calc(6 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
   justify-items: center;
 }
 
@@ -42,6 +42,10 @@
 }
 
 @media (--ifm-narrow-window) {
+  .featuresContainer {
+    gap: calc(2 * var(--ifm-spacing-vertical)) var(--ifm-spacing-horizontal);
+  }
+
   .projectsContainer {
     grid-template-columns: 1fr 1fr;
   }

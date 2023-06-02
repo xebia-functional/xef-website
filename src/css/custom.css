@@ -232,6 +232,16 @@ h1, h2, h3, h4, h5, h6 {
   height: 600px;
 }
 
+.hero__title {
+  font-size: 4rem;
+}
+
+@media (--xef-mobile-window) {
+  .hero__title {
+    font-size: 3rem;
+  }
+}
+
 .button {
   font-family: var(--ifm-font-family-base);
   transition: border-color var(--ifm-transition-slow), background-color var(--ifm-transition-slow), filter var(--ifm-transition-slow);
@@ -278,6 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 .pills__item {
   border-radius: var(--ifm-global-radius);
   padding: 0.5rem 1rem;
+  transition: filter var(--xef-transition-slowest), color var(--ifm-transition-slow), background-color var(--ifm-transition-slow);
 }
 
 .plugin-docs .footer {

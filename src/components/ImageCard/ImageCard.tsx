@@ -21,8 +21,8 @@ export interface ImageCardOptionsProps extends ImageCardProps {
   landscapeMode: boolean;
 }
 
-const videoExtensions = ['.mpg', '.mpeg', '.mp4', '.ogv', '.webm'];
-const imageExtensions = ['.gif', '.jpg', '.jpeg', '.png'];
+const videoExtensions = ['webm', 'mp4', 'mpg', 'mpeg', 'ogv'];
+const imageExtensions = ['webp', 'png', 'jpg', 'jpeg', 'gif'];
 
 export function ImageCardBase({
   title = 'Case study',
@@ -34,7 +34,7 @@ export function ImageCardBase({
   landscapeMode = false,
   overlay = true,
 }: ImageCardOptionsProps) {
-  const imageExtension = `.${image.split('.').pop()}`;
+  const imageExtension = `${image.split('.').pop()}`;
   const isVideo = videoExtensions.includes(imageExtension);
   const isImage = imageExtensions.includes(imageExtension);
 
@@ -52,7 +52,7 @@ export function ImageCardBase({
         }`}>
         {isImage && (
           <img
-            className={styles.image}
+            className={`${styles.image} ${!overlay ? styles.fit : ''}`}
             src={image}
             alt={`${stringTitle}`}
             title={`${stringTitle}`}
@@ -68,6 +68,7 @@ export function ImageCardBase({
             autoPlay
             loop
             muted
+            playsInline
             disablePictureInPicture>
             {`${stringTitle} video`}
           </video>
@@ -77,7 +78,7 @@ export function ImageCardBase({
         <h2 className={styles.title}>{parsedTitle}</h2>
         <h5 className={styles.subtitle}>{subtitle}</h5>
         <p className={styles.text}>{body}</p>
-        <strong className={styles.linkContainer}>
+        <strong>
           <Link href={href} className={styles.link}>
             {linkText}
           </Link>
