@@ -134,7 +134,6 @@ a structure, and deserialize the result back for you.
 ```scala
 import com.xebia.functional.xef.scala.auto.*
 import io.circe.Decoder
-import io.circe.parser.decode
 
 private final case class Book(name: String, author: String, summary: String) derives SerialDescriptor, Decoder
 
