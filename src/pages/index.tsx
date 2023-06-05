@@ -41,9 +41,9 @@ export default function Home(): JSX.Element {
             <Tabs>
               <TabItem value="scala" label="Scala">
                 <CodeBlock language="scala" showLineNumbers>
-                  {`final case class Population(size: Int, description: String) derives ScalaSerialDescriptor, Decoder
+                  {`final case class Population(size: Int, description: String) derives SerialDescriptor, Decoder
 
-final case class Image(description: String, url: String) derives ScalaSerialDescriptor, Decoder
+final case class Image(description: String, url: String) derives SerialDescriptor, Decoder
 
 @main def runPopulation: Unit =
   ai {
