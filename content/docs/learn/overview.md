@@ -12,7 +12,7 @@ import DocCardList from '@theme/DocCardList';
 # <decorated-text icon={frontMatter.sidebar_custom_props.icon} title={frontMatter.title} />
 
 In recent months, the world of AI has changed drastically. The impact of the
-general availability of Large Language Models, like [ChatGPT](https://chat.openai.com/),
+general availability of Large Language Models, like [ChatGPT](https://chat.openai.com/), [Bard](https://bard.google.com/), and [Dolly](https://www.databricks.com/product/machine-learning/large-language-models)
 is hard to overstate. These only complement existing techniques in
 image generation, classification, speech recognition, and many others. At the
 time of writing this post, [Hugging Face Hub](https://huggingface.co/models), the leading repository of models, has more than 200,000 of them! The challenge is how to 
