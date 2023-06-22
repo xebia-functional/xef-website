@@ -168,7 +168,7 @@ const createConfig = async () => {
               items: [
                 {
                   label: 'Twitter',
-                  href: 'https://twitter.com/xebiafunctional',
+                  href: 'https://twitter.com/xef_ai',
                   icon: '/img/icon-social-twitter.svg',
                 },
                 {
