@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   z-index: 1;
-  height: calc(100vh - var(--ifm-navbar-height));
+  height: 37.5rem;
 }
 
 .hero::before {

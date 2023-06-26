@@ -24,6 +24,7 @@ export function Hero({
           {subtitle && (
             <h2 className={`${styles.subtitle} ${styles.max}`}>{subtitle}</h2>
           )}
+          <p>XEF is a library to bring the power of modern AI to your application or service, in the form of LLM (Large Language Models), image generation, and many others.</p>
           <div className={`${styles.ctaList} ${styles.max}`}>
             {ctaList &&
               ctaList.map(({ title, href, elementClassName = '' }) => (

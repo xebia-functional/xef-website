@@ -10,22 +10,30 @@ hero:
       elementClassName: button--special button--outline
 
 features:
-  - title: "Discover <span class='emphasize'>xef.ai</span>"
+  - title: "Model <span class='emphasize'>Driven Design</span>"
     href: /learn/overview
-    image: /img/ilus-1.webp
-    body: xef.ai offers a convenient interface to modern AI techniques, 
-      including Large Language Models,
-      so your team can quickly move from ideas to proofs of concept
-      to integrating AI in your business processes.
+    image: /img/xef-logo-animation-1sec-loop-720p.webm
+    linkText: Get started
+    body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sagittis arcu et iaculis. Aenean sagittis cursus congue. Nulla vitae mattis justo, eget hendrerit metus. In fermentum nulla nec ex pulvinar interdum. Integer in arcu vel odio interdum varius. Vestibulum dignissim lacus ut pharetra condimentum. Integer vel odio turpis.
 
-  - title: "Try <span class='emphasize'>xef.ai</span>"
+
+
+  - title: "Context <span class='emphasize'>Scopes</span>"
     href: /learn/quickstart
     image: /img/xef-logo-animation-1sec-loop-720p.webm
     linkText: Get started
     body: 
-      Summarize the most important events in the customer's account. 
-      Generate queries to the database from a natural language description.
-      Identify the important parts of a PDF invoice.
-      The possibilities are endless.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sagittis arcu et iaculis. Aenean sagittis cursus congue. Nulla vitae mattis justo, eget hendrerit metus. In fermentum nulla nec ex pulvinar interdum. Integer in arcu vel odio interdum varius. Vestibulum dignissim lacus ut pharetra condimentum. Integer vel odio turpis.
+
+
+
+  - title: "<span class='emphasize'>Integrations</span>"
+    href: /learn/quickstart
+    image: /img/xef-logo-animation-1sec-loop-720p.webm
+    linkText: Get started
+    body: 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sagittis arcu et iaculis. Aenean sagittis cursus congue. Nulla vitae mattis justo, eget hendrerit metus. In fermentum nulla nec ex pulvinar interdum. Integer in arcu vel odio interdum varius. Vestibulum dignissim lacus ut pharetra condimentum. Integer vel odio turpis.
+
+
 
 
