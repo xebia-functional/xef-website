@@ -32,7 +32,7 @@ features:
     image: /img/xef-logo-animation-1sec-loop-720p.webm
     linkText: Get started
     body: 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sagittis arcu et iaculis. Aenean sagittis cursus congue. Nulla vitae mattis justo, eget hendrerit metus. In fermentum nulla nec ex pulvinar interdum. Integer in arcu vel odio interdum varius. Vestibulum dignissim lacus ut pharetra condimentum. Integer vel odio turpis.
+      Extend your reach with our extensive Integrations. Connect seamlessly with third-party data stores like Lucene and PostgreSQL and load data from CSV, PDF, Git, and others. Enrich the AI's context with diverse and detailed information, enabling it to generate more comprehensive and accurate responses.
 
 
 
