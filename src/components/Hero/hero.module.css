@@ -1,16 +1,16 @@
 .hero {
   position: relative;
   z-index: 1;
-  height: 37.5rem;
+  height: auto;
 }
 
 .hero::before {
-  background-image: url('@site/static/img/header.webp');
+  /* background-image: url('@site/static/img/header.webp'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 33% 50%;
   mix-blend-mode: lighten;
-  width: 100%;
+  width: 68rem;
   height: 100%;
   content: '';
   position: absolute;
@@ -25,7 +25,7 @@
 .hero::after {
   background-image: url('@site/static/img/hero-pattern.svg');
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position: center center;
   width: 100%;
   height: 100%;
   content: '';
@@ -71,7 +71,26 @@
  */
 .max.max {
   max-width: 440px;
-  text-align: center;
+}
+
+.description {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+}
+
+.playvideo {
+  margin-top: 2rem;
+}
+
+.playvideo a {
+  position: relative;
+  bottom: 0;
+  transition: all linear 166ms;
+}
+
+.playvideo a:hover {
+  bottom: 8px;
+  filter: none;
 }
 
 @media (--xef-mobile-window) {
@@ -98,7 +117,6 @@
   display: flex;
   flex-direction: row;
   gap: var(--ifm-spacing-horizontal);
-  justify-content: center; 
   margin-top: calc(4 * var(--ifm-spacing-vertical));
 }
 

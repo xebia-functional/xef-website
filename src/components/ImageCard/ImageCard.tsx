@@ -22,7 +22,7 @@ export interface ImageCardOptionsProps extends ImageCardProps {
 }
 
 const videoExtensions = ['webm', 'mp4', 'mpg', 'mpeg', 'ogv'];
-const imageExtensions = ['webp', 'png', 'jpg', 'jpeg', 'gif'];
+const imageExtensions = ['webp', 'png', 'jpg', 'jpeg', 'gif', 'svg'];
 
 export function ImageCardBase({
   title = 'Case study',
