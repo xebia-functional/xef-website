@@ -69,6 +69,11 @@ const createConfig = async () => {
               require.resolve('./src/css/custom.css'),
             ],
           },
+
+          googleAnalytics: {
+            trackingID: 'G-CXGGXNMKQ9',
+            anonymizeIP: true,
+          },
         }),
       ],
     ],
