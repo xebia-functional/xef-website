@@ -11,6 +11,8 @@ export interface HeroProps extends Partial<Styled> {
   ctaList?: Array<Cta>;
 }
 
+
+
 export function Hero({
   title,
   subtitle,

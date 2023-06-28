@@ -29,7 +29,7 @@ features:
 
   - title: "<span class='emphasize'>Integrations</span>"
     href: /learn/quickstart
-    image: /img/feature3.svg
+    image: /img/feature3.gif
     linkText: Get started
     body: 
       Extend your reach with our extensive Integrations. Connect seamlessly with third-party data stores like Lucene and PostgreSQL and load data from CSV, PDF, Git, and others. Enrich the AI's context with diverse and detailed information, enabling it to generate more comprehensive and accurate responses.
