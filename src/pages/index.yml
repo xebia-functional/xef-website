@@ -12,7 +12,7 @@ hero:
 features:
   - title: "Model <span class='emphasize'>Driven Design</span>"
     href: /learn/overview
-    image: /img/feature1.gif
+    image: /img/feature1.webm
     linkText: Get started
     body: Embrace AI with our innovative Model Driven Design. Accessing AI's power becomes just a function call away by automatically serializing AI responses to your defined models. Revolutionize your development process and amplify the user experience, all while keeping the control in your hands.
 
@@ -20,7 +20,7 @@ features:
 
   - title: "Context <span class='emphasize'>Scopes</span>"
     href: /learn/quickstart
-    image: /img/feature2.gif
+    image: /img/feature2.webm
     linkText: Get started
     body: 
       Experience the sophistication of AI with our Context Scopes. They provide the AI with access to a memory and vector store context, ensuring the AI has the necessary data to make informed decisions. Streamline your workflow with smart resource management and watch as your applications gain a mind of their own.
@@ -29,7 +29,7 @@ features:
 
   - title: "<span class='emphasize'>Integrations</span>"
     href: /learn/quickstart
-    image: /img/feature3.gif
+    image: /img/feature3.webm
     linkText: Get started
     body: 
       Extend your reach with our extensive Integrations. Connect seamlessly with third-party data stores like Lucene and PostgreSQL and load data from CSV, PDF, Git, and others. Enrich the AI's context with diverse and detailed information, enabling it to generate more comprehensive and accurate responses.
