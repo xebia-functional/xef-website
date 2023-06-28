@@ -10,22 +10,30 @@ hero:
       elementClassName: button--special button--outline
 
 features:
-  - title: "Discover <span class='emphasize'>xef.ai</span>"
+  - title: "Model <span class='emphasize'>Driven Design</span>"
     href: /learn/overview
-    image: /img/ilus-1.webp
-    body: xef.ai offers a convenient interface to modern AI techniques, 
-      including Large Language Models,
-      so your team can quickly move from ideas to proofs of concept
-      to integrating AI in your business processes.
+    image: /img/feature1.webm
+    linkText: Get started
+    body: Embrace AI with our innovative Model Driven Design. Accessing AI's power becomes just a function call away by automatically serializing AI responses to your defined models. Revolutionize your development process and amplify the user experience, all while keeping the control in your hands.
 
-  - title: "Try <span class='emphasize'>xef.ai</span>"
+
+
+  - title: "Context <span class='emphasize'>Scopes</span>"
     href: /learn/quickstart
-    image: /img/xef-logo-animation-1sec-loop-720p.webm
+    image: /img/feature2.webm
     linkText: Get started
     body: 
-      Summarize the most important events in the customer's account. 
-      Generate queries to the database from a natural language description.
-      Identify the important parts of a PDF invoice.
-      The possibilities are endless.
+      Experience the sophistication of AI with our Context Scopes. They provide the AI with access to a memory and vector store context, ensuring the AI has the necessary data to make informed decisions. Streamline your workflow with smart resource management and watch as your applications gain a mind of their own.
+
+
+
+  - title: "<span class='emphasize'>Integrations</span>"
+    href: /learn/quickstart
+    image: /img/feature3.webm
+    linkText: Get started
+    body: 
+      Extend your reach with our extensive Integrations. Connect seamlessly with third-party data stores like Lucene and PostgreSQL and load data from CSV, PDF, Git, and others. Enrich the AI's context with diverse and detailed information, enabling it to generate more comprehensive and accurate responses.
+
+
 
 

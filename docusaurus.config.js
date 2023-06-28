@@ -201,7 +201,7 @@ const createConfig = async () => {
             width: 128,
             height: 42,
           },
-          copyright: `xef is designed and developed by xef with support from <a href="https://47deg.com" target="_blank" rel="noopener noreferrer">Xebia Functional</a>`,
+          copyright: `xef is designed and developed by xef with support from <a href="https://xebia.com/" target="_blank" rel="noopener noreferrer">Xebia Functional</a>`,
         },
         prism: {
           theme: darkCodeTheme,
