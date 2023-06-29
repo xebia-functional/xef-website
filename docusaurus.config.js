@@ -70,7 +70,7 @@ const createConfig = async () => {
             ],
           },
 
-          googleAnalytics: {
+          gtag: {
             trackingID: 'G-CXGGXNMKQ9',
             anonymizeIP: true,
           },
