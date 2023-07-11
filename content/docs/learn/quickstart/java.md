@@ -24,7 +24,7 @@ in your build, if you haven't done it before. Then add the library in the usual 
 <dependency>
     <groupId>com.xebia</groupId>
     <artifactId>xef-java</artifactId>
-    <version>0.2.0</version>
+    <version>0.0.2</version>
     <type>pom</type>
 </dependency>
 ```
