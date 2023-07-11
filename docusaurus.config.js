@@ -124,6 +124,10 @@ const createConfig = async () => {
                   to: '/learn/quickstart/scala',
                 },
                 {
+                  label: 'Java',
+                  to: '/learn/quickstart/java',
+                },
+                {
                   label: 'Examples',
                   to: '/learn/examples',
                 },
