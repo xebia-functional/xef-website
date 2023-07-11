@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-  implementation("com.xebia:xef-core:<version>")
+  implementation("com.xebia:xef-java:<version>")
 }
 ```
 
