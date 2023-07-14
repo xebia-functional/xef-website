@@ -197,3 +197,123 @@ In a larger AI application it's common to end up with quite some template for pr
 Online material like [this course](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
 and [this tutorial](https://learnprompting.org/docs/intro) explain some of the most important patterns,
 some of them readily available in xef.ai.
+
+
+## Context
+
+LLMs have knowledge about a broad variety of topics. But by construction they are not able
+to respond to questions about information not available in their training set. However, you
+often want to supplement the LLM with more data:
+- Transient information referring to the current moment, like the current weather, or
+  the trends in the stock market in the past 10 days.
+- Non-public information, for example for summarizing a piece of text you're creating
+  within you organization.
+
+These additional pieces of information are called the _context_ in xef.ai, and are attached
+to every question to the LLM. Although you can add arbitrary strings to the context at any
+point, the most common mode of usage is using an _agent_ to consult an external service,
+and make its response part of the context. One such agent is `search`, which uses a web
+search service to enrich that context.
+
+```java
+package my.example;
+
+import java.util.concurrent.CompletableFuture;
+
+public class Weather {
+    private final AIScope scope;
+
+    public Weather(AIScope scope) {
+        this.scope = scope;
+    }
+
+    public CompletableFuture<String> recommendation() {
+        return scope.contextScope(scope.search("Weather in $place"), () ->
+          scope.promptMessage("Knowing this forecast, what clothes do you recommend I should wear?")
+        );
+    }
+}
+```
+
+:::note Better vector stores
+
+The underlying mechanism of the context is a _vector store_, a data structure which
+saves a set of strings, and is able to find those similar to another given one.
+By default xef.ai uses an _in-memory_ vector store, since it provides maximum
+compatibility across platforms. However, if you foresee your context growing above
+the hundreds of elements, you may consider switching to another alternative, like
+Lucene or PostgreSQL.
+
+```java
+package my.example;
+
+import com.xebia.functional.xef.vectorstores.LuceneKt;
+
+import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
+
+public class VectorStore {
+
+    private final AIScope scope;
+
+    public VectorStore(AIScope scope) {
+        this.scope = scope;
+    }
+
+    public void example() {
+        Path LUCENE_PATH = Path.of("lucene");
+        scope.contextScope(
+            LuceneKt.InMemoryLuceneBuilder(LUCENE_PATH),
+            () -> CompletableFuture.completedFuture("do stuff")
+        );
+    }
+
+}
+```
+
+:::
+
+## Project Loom
+
+As mentioned above, xef.ai is designed to work with Project Loom.
+All the functions of `AIScope` are returned as a `Future` for maximum backward compatibility until JDK8,
+but using Loom we can just use `get` to wait for the result. In order to use `VirtualThreads`, and benefit from
+non-blocking behavior of `VirtualThread` all you need to do is initialise the `AIScope` with a Loom compatible `ExecutorService`.
+
+```java
+package com.xebia.functional.xef.java.auto;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+
+public class Loom {
+
+  private static class Fact {
+    public String topic;
+    public String content;
+
+    @Override
+    public String toString() {
+      return "FactClass{" +
+              "topic='" + topic + '\'' +
+              ", content='" + content + '\'' +
+              '}';
+    }
+  }
+
+  public static void main(String[] args) throws ExecutionException, InterruptedException {
+    try (AIScope scope = new AIScope(Executors.newVirtualThreadPerTaskExecutor())) {
+      var fact1 = scope.prompt("A fascinating fact about you", Fact.class).get();
+      var fact2 = scope.prompt("An interesting fact about me", Fact.class).get();
+      var result = String.format("""
+                      |Fact 1: %s.
+                      |Fact 2: %s
+                      |Make your next move:""",
+              fact1,
+              fact2
+      );
+      System.out.println(result);
+    }
+  }
+}
+```
