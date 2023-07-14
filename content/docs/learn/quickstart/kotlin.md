@@ -138,7 +138,7 @@ import com.xebia.functional.xef.auto.*
 @Serializable
 data class Book(val title: String, val author: String)
 
-suspend fun AIScope.books(topic: String): List<Book> {
+suspend fun AIScope.books(topic: String): AI<List<Book>> {
   val prompt = buildPrompt {
     + "Give me a selection of books about the following topic:"
     + topic
@@ -171,8 +171,8 @@ search service to enrich that context.
 ```kotlin
 import com.xebia.functional.xef.auto.*
 
-suspend fun AIScope.whatToWear(place: String): List<String> =
-  context(search("Weather in $place")) {
+suspend fun AIScope.whatToWear(place: String): String =
+  contextScope(search("Weather in $place")) {
     promptMessage("Knowing this forecast, what clothes do you recommend I should wear?")
   }
 ```
