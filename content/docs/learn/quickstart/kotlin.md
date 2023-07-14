@@ -191,7 +191,7 @@ import com.xebia.functional.xef.auto.*
 import com.xebia.functional.xef.vectorstores
 
 suspend fun AIScope.books(topic: String): List<Book> =
-  withContextStore(InMemoryLuceneBuilder(LUCENE_PATH)) { /* do stuff */ }
+  contextScope(InMemoryLuceneBuilder(LUCENE_PATH)) { /* do stuff */ }
 ```
 
 :::
