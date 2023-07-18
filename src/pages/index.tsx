@@ -74,6 +74,35 @@ suspend fun main() =
               `}
                 </CodeBlock>
               </TabItem>
+              <TabItem value="java" label="Java">
+                <CodeBlock language="java" showLineNumbers>
+                  {`public class Example {
+  public static class Population {
+    @NotNull public int size;
+    @NotNull public String description;
+  }
+
+  public static class Image {
+    @NotNull public String description;
+    @NotNull public String url;
+  }
+
+  public static void main(String[] args) throws ExecutionException, InterruptedException {
+    try (AIScope scope = new AIScope()) {
+      CompletableFuture<Population> cadiz = scope.prompt("Population of Cádiz, Spain.", Population.class);
+      CompletableFuture<Population> seattle = scope.prompt("Population of Seattle, WA.", Population.class);
+      cadiz.thenCombineAsync(seattle, (c, s) -> {
+          System.out.println("Seattle is " + (s.size / (double) c.size) + " times the size of Cádiz.");
+          return scope.prompt("Show me a picture of Seattle.", Image.class);
+        }).thenCompose(Function.identity())
+        .thenAccept(img -> System.out.println("Image " + img.description + " available at " + img.url))
+        .get();
+    }
+  }
+}
+`}
+                </CodeBlock>
+              </TabItem>
             </Tabs>
           </div>
         </section>
