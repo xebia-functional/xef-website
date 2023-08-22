@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.xebia:xef-core:<version>")
+    implementation("com.xebia:xef-kotlin:<version>")
 }
 ```
 
@@ -31,7 +31,7 @@ We publish all libraries at once under the same version, so
 [version catalogs](https://docs.gradle.org/current/userguide/platforms.html#sec:sharing-catalogs)
 could be useful.
 
-By default, the `ai` block connects to [OpenAI](https://platform.openai.com/).
+By default, the `OpenAI.conversation` block connects to [OpenAI](https://platform.openai.com/).
 To use their services you should provide the corresponding API key in the `OPENAI_TOKEN`
 environment variable, and have enough credits.
 
@@ -66,41 +66,13 @@ Inside of it, you can _prompt_ for information, which means posing the question 
 (Large Language Model). The easiest way is to just get the information back as a string.
 
 ```kotlin
-import com.xebia.functional.xef.auto.*
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI
+import com.xebia.functional.xef.conversation.llm.openai.promptMessage
 
-fun books(topic: String): List<String> = ai {
+fun books(topic: String): List<String> = OpenAI.conversation {
     promptMessage("Give me a selection of books about $topic")
-}.getOrThrow()
+}
 ```
-
-In the example above we _execute_ the `ai` block with `getOrThrow`, that throws an exception
-whenever a problem is found (for example, if your API key is not correct). If you want more
-control, you can use `getOrElse` (to which you provide a custom handler for errors), or
-`toEither` (which returns the result using 
-[`Either` from Arrow](https://arrow-kt.io/learn/typed-errors/either-and-ior/)).
-
-In the next examples we'll write functions that rely on `ai`'s DSL functionality, 
-but without actually extracting the values yet using `getOrThrow` or `getOrElse`.
-We'll eventually call this functions from an `ai` block as we've shown above, and
-this allows us to build larger pipelines, and only extract the final result at the end.
-
-This can be done by either writing an extension function on `AIScope`,
-or by using the form `AI<Something>`. Let's compare the two:
-
-```kotlin
-import com.xebia.functional.xef.auto.*
-
-suspend fun AIScope.books(topic: String): String =
-  promptMessage("Give me a selection of books about $topic")
-
-fun books2(topic: String): AI<String> =
-  promptMessage("Give me a selection of books about $topic")
-```
-
-Both functions are equivalent, but the first is considered most idiomatic, and can be compared to
-`CoroutineScope` from KotlinX Coroutines which gives access to concurrency primitives like `launch` and `async`.
-The second form is useful when you want to create an extension function on something else than `AIScope`,
-and you can use `bind` to extract the `String` value from `AI<String>` within an `ai` block or an `AIScope`.
 
 ## Structure
 
@@ -110,42 +82,84 @@ using a _custom type_. The library takes care of instructing the LLM on building
 a structure, and deserialize the result back for you.
 
 ```kotlin
-import com.xebia.functional.xef.auto.*
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Books(val books: List<Book>)
 
 @Serializable
 data class Book(val title: String, val author: String)
 
-suspend fun AIScope.books(topic: String): AI<List<Book>> =
-    prompt("Give me a selection of books about $topic")
+suspend fun books(topic: String): Books = OpenAI.conversation {
+  prompt("Give me a selection of books about $topic")
+}
 ```
 
 xef.ai reuses [Kotlin's common serialization](https://kotlinlang.org/docs/serialization.html),
 which requires adding the `kotlinx.serialization` plug-in to your build, and mark each
 class as `@Serializable`. The LLM is usually able to detect which kind of information should
 go on each field based on its name (like `title` and `author` above).
+For those cases where the LLM is not able to infer the type, you can use the `@Description` annotation:
 
-## Prompt templates
+## @Description annotations
+
+```kotlin
+import com.xebia.functional.xef.conversation.Description
+
+@Serializable
+@Description("A list of books")
+data class Books(
+  @Description("The list of books")
+  val books: List<Book>
+)
+
+@Serializable
+@Description("A book")
+data class Book(
+  @Description("The title of the book")
+  val title: String, 
+  @Description("The author of the book")
+  val author: String,
+  @Description("A 50 word summary of the book")
+  val summary: String
+)
+
+suspend fun books(topic: String): Books = OpenAI.conversation {
+  prompt("Give me a selection of books about $topic")
+}
+```
+
+All the types and properties annotated with `@Description` will be used to build the
+json schema `description` fields used for the LLM to reply with the right format and data
+in order to deserialize the result back.
+
+## Prompts
 
 The function `books` uses naive string interpolation to make the topic part of the question
 to the LLM. As the prompt gets bigger, though, you may want to break it into smaller parts.
-The `buildPrompt` function is the tool here: inside of it you can include any string or
-smaller prompt by prefixing it with `+`
+The `buildPrompt` function is the tool here: inside of it you can include messages and other prompts
+which get built before the chat completions endpoint.
 (this is known as the [builder pattern](https://kotlinlang.org/docs/type-safe-builders.html)).
 
 ```kotlin
-import com.xebia.functional.xef.auto.*
+import com.xebia.functional.xef.prompt.Prompt
+import com.xebia.functional.xef.prompt.templates.*
 
 @Serializable
 data class Book(val title: String, val author: String)
 
 suspend fun AIScope.books(topic: String): AI<List<Book>> {
-  val prompt = buildPrompt {
-    + "Give me a selection of books about the following topic:"
-    + topic
+  val prompt = Prompt {
+    +system("You are an assistant in charge of providing a selection of books about topics provided")
+    +assistant("I will provide relevant suggestions of books and follow the instructions closely.")
+    +user("Give me a selection of books about $topic")
   }
   return prompt(prompt)
 }
 ```
+
+This style of prompting is more effective than simple strings messages as it describes a scene of how the LLM
+should behave and reply. We use different roles for each message constructed with the `Prompt` builder.
 
 In a larger AI application it's common to end up with quite some template for prompts.
 Online material like [this course](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
@@ -169,12 +183,18 @@ and make its response part of the context. One such agent is `search`, which use
 search service to enrich that context.
 
 ```kotlin
-import com.xebia.functional.xef.auto.*
+import com.xebia.functional.xef.reasoning.serpapi.Search
 
-suspend fun AIScope.whatToWear(place: String): String =
-  contextScope(search("Weather in $place")) {
-    promptMessage("Knowing this forecast, what clothes do you recommend I should wear?")
+@Serializable data class MealPlan(val name: String, val recipes: List<Recipe>)
+
+suspend fun mealPlan() {
+  OpenAI.conversation {
+    val search = Search(OpenAI.FromEnvironment.DEFAULT_CHAT, this)
+    addContext(search("gall bladder stones meals"))
+    prompt("Meal plan for the week for a person with gall bladder stones that includes 5 recipes.")
   }
+}
+
 ```
 
 :::note Better vector stores
@@ -184,14 +204,4 @@ saves a set of strings, and is able to find those similar to another given one.
 By default xef.ai uses an _in-memory_ vector store, since it provides maximum
 compatibility across platforms. However, if you foresee your context growing above
 the hundreds of elements, you may consider switching to another alternative, like
-Lucene or PostgreSQL.
-
-```kotlin
-import com.xebia.functional.xef.auto.*
-import com.xebia.functional.xef.vectorstores
-
-suspend fun AIScope.books(topic: String): List<Book> =
-  contextScope(InMemoryLuceneBuilder(LUCENE_PATH)) { /* do stuff */ }
-```
-
-:::
+Lucene or PostgreSQL also supported by xef.
