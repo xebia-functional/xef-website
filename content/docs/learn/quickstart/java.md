@@ -80,118 +80,95 @@ Read our [_Data Transmission Disclosure_](https://github.com/xebia-functional/xe
 ## Your first prompt
 
 After adding the library to your project
-you get access to the `AIScope` class, which is your port of entry to the modern AI world.
+you get access to the `Conversation` class, which is your port of entry to the modern AI world.
 Inside of it, you can _prompt_ for information, which means posing the question to an LLM
 (Large Language Model). The easiest way is to just get the information back as a string.
 
 ```java
-package my.example;
+package example;
 
-import com.xebia.functional.xef.java.auto.AIScope;
+import com.xebia.functional.xef.conversation.PlatformConversation;
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
+import com.xebia.functional.xef.prompt.Prompt;
 
 import java.util.concurrent.ExecutionException;
 
-public class Example {
-  public static void main(String[] args) throws ExecutionException, InterruptedException {
-    try (AIScope scope = new AIScope()) {
-      String topic = "artificial intelligence";
-      scope.promptMessage("Give me a selection of books about " + topic)
-              .thenAccept(System.out::println)
-              .get();
+public class Books {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        try (var scope = OpenAI.conversation()) {
+            var book = scope.promptMessage(
+                    OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, 
+                    new Prompt("A book about cooking")
+            ).get();
+            System.out.println(book);
+        }
     }
-  }
 }
+
 ```
 
-In the example above we create an `AIScope` using the `try-with-resources` syntax,
+In the example above we create a `Conversation` using the `try-with-resources` syntax,
 which ensures that the scope is closed at the end of the block.
-The `AIScope` gives us access to the `promptMessage` & co functions, which allow us to interact with the LLM.
+The `Conversation` gives us access to the `promptMessage` & co functions, which allow us to interact with the LLM.
 
-All the functions of `AIScope` are returned as a `Future` for maximum backward compatibility until JDK8,
+All the functions of `Conversation` are returned as a `Future` for maximum backward compatibility until JDK8,
 but you can inject `Executors.newVirtualThreadPerTaskExecutor()` to have the `Future`s work on virtual threads.
+We block in these examples assuming LOOM.
 
-Remember that exceptions in `Future`are wrapped in `ExecutionException`,
+Remember that exceptions in `Future` are wrapped in `ExecutionException`,
 so to inspect the actual exception you need to call `getCause()` on it.
 _Structured Concurrency_ is implemented under the hood by Kotlin's `CoroutineScope`,
-and all futures are cancelled when the `AIScope` is closed and `Future#get` will throw `CancellationException`.
+and all futures are cancelled when the `Conversation` is closed and `Future#get` will throw `CancellationException`.
 
-In the next examples we'll write functions that rely on `AIScope`'s DSL functionality
+In the next examples we'll write functions that rely on `Conversation`'s DSL functionality
 
 ## Structure
 
-The output from the `books` function above may be hard to parse back from the
+The output of functions like the `books` function above may be hard to parse back from the
 strings we obtain. Fortunately, you can also ask xef.ai to give you back the information
 using a _custom type_. The library takes care of instructing the LLM on building such
 a structure, and deserialize the result back for you.
 
-We can thus define a `Book` class that describes the desired response we want to receive from the LLM.
+In the following example we define a new domain around a `MealPlan` class that describes the desired response we want to receive from the LLM.
 Relying on [Jakarta validation](https://beanvalidation.org) we can also specify which fields are mandatory using `NotNull`,
 or include additional constraints in the [Json Schema](https://json-schema.org).
 
 xef.ai reuses [Jackson](https://github.com/FasterXML/jackson-databind),
-and [JsonSchema generator](https://github.com/victools/jsonschema-generator) to parse and generate the Json Schema V7 for you.
+and [JsonSchema generator](https://github.com/victools/jsonschema-generator) to parse and generate the Json Schema for you.
 
 ```java
-package my.example;
+package example;
 
+import com.xebia.functional.xef.conversation.PlatformConversation;
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
+import com.xebia.functional.xef.prompt.Prompt;
+import com.xebia.functional.xef.reasoning.serpapi.Search;
 import jakarta.validation.constraints.NotNull;
 
-public class Book {
-  @NotNull public String title;
-  @NotNull public String author;
-  @NotNull public int year;
-  @NotNull public String genre;
-
-  @Override
-  public String toString() {
-    return "Book{" +
-            "title='" + title + '\'' +
-            ", author='" + author + '\'' +
-            ", year=" + year +
-            ", genre='" + genre + '\'' +
-            '}';
-  }
-}
-```
-
-Using the definition of `Book`, we can rewrite our previous example as:
-
-```java
-package my.example;
-
-import com.xebia.functional.xef.java.auto.AIScope;
-import jakarta.validation.constraints.NotNull;
-
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class Example {
+public class MealPlan {
 
-    private final AIScope scope;
+    public record MealPlanRecord(@NotNull String name, @NotNull List<Recipe> recipes){}
+    public record Recipe(@NotNull String name, @NotNull List<String> ingredients){}
 
-    public Example(AIScope scope) {
-        this.scope = scope;
-    }
-    
-    public CompletableFuture<Book> bookSelection(String topic) {
-        return scope.prompt("Give me a selection of books about " + topic, Example.Book.class);
+    private static MealPlanRecord mealPlan(PlatformConversation scope) {
+        return scope.prompt(
+            OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, 
+            new Prompt("Meal plan for the week for a person with gall bladder stones that includes 5 recipes."), 
+            MealPlanRecord.class
+        );
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        try (AIScope scope = new AIScope()) {
-            Example example = new Example(scope);
-            example.bookSelection("artificial intelligence")
-                    .thenAccept(System.out::println)
-                    .get();
+        try (var scope = OpenAI.conversation()) {
+            System.out.println(mealPlan(scope));
         }
     }
 }
 ```
-
-Here we also show how you can easily capture the `AIScope` in a class,
-and build and compose additional functionality on top.
-If you're using any dependency injection framework, you can also construct `AIScope` and inject it as usual.
-Make sure that the dependency injection framework properly closes the `AIScope` when the application shuts down.
 
 In a larger AI application it's common to end up with quite some template for prompts.
 Online material like [this course](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
@@ -216,21 +193,83 @@ and make its response part of the context. One such agent is `search`, which use
 search service to enrich that context.
 
 ```java
-package my.example;
+package example;
 
+import com.xebia.functional.xef.conversation.PlatformConversation;
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
+import com.xebia.functional.xef.prompt.Prompt;
+import com.xebia.functional.xef.reasoning.serpapi.Search;
+
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
-public class Weather {
-    private final AIScope scope;
+public class MealPlan {
 
-    public Weather(AIScope scope) {
-        this.scope = scope;
+    public record MealPlanRecord(String name, List<Recipe> recipes){}
+    public record Recipe(String name, List<String> ingredients){}
+
+    private static MealPlanRecord mealPlan(PlatformConversation scope) {
+        return scope.prompt(
+            OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, 
+            new Prompt("Meal plan for the week for a person with gall bladder stones that includes 5 recipes."), 
+            MealPlanRecord.class
+        );
     }
 
-    public CompletableFuture<String> recommendation() {
-        return scope.contextScope(scope.search("Weather in $place"), () ->
-          scope.promptMessage("Knowing this forecast, what clothes do you recommend I should wear?")
-        );
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        try (var scope = OpenAI.conversation()) {
+            var search = new Search(OpenAI.FromEnvironment.DEFAULT_CHAT, scope, 3);
+            scope.addContextFromArray(search.search("gall bladder stones meals").get());
+            System.out.pritnln(mealPlan(scope).get());
+        }
+    }
+}
+```
+
+In some cases the LLM needs to be _primed_ with some information before it can answer.
+We can use the @Description annotation to provide a description of the information we want to add
+to the LLM about the expected response for our objects:
+
+## @Description annotations
+
+```java 
+package example;
+
+import com.xebia.functional.xef.conversation.PlatformConversation;
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
+import com.xebia.functional.xef.prompt.Prompt;
+import com.xebia.functional.xef.reasoning.serpapi.Search;
+import com.xebia.functional.xef.conversation.jvm.Description;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+
+public class MealPlan {
+
+    @Description("A meal plan")
+    public record MealPlanRecord(
+        @Description("The name of the meal plan") String name,
+        @Description("A list of 5 recipes for the meal plan") List<Recipe> recipes
+    ){}
+    
+    public record Recipe(
+        @Description("The name of the recipe") String name,
+        @Description("A list of ingredients for the recipe") List<String> ingredients
+    ){}
+
+    private static MealPlanRecord mealPlan(PlatformConversation scope) {
+        return scope.prompt(OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, new Prompt("Meal plan for the week for a person with gall bladder stones that includes 5 recipes."), MealPlanRecord.class);
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        try (var scope = OpenAI.conversation()) {
+            var search = new Search(OpenAI.FromEnvironment.DEFAULT_CHAT, scope, 3);
+            scope.addContextFromArray(search.search("gall bladder stones meals").get());
+            System.out.pritnln(mealPlan(scope).get());
+        }
     }
 }
 ```
@@ -243,77 +282,3 @@ By default xef.ai uses an _in-memory_ vector store, since it provides maximum
 compatibility across platforms. However, if you foresee your context growing above
 the hundreds of elements, you may consider switching to another alternative, like
 Lucene or PostgreSQL.
-
-```java
-package my.example;
-
-import com.xebia.functional.xef.vectorstores.LuceneKt;
-
-import java.nio.file.Path;
-import java.util.concurrent.CompletableFuture;
-
-public class VectorStore {
-
-    private final AIScope scope;
-
-    public VectorStore(AIScope scope) {
-        this.scope = scope;
-    }
-
-    public void example() {
-        Path LUCENE_PATH = Path.of("lucene");
-        scope.contextScope(
-            LuceneKt.InMemoryLuceneBuilder(LUCENE_PATH),
-            () -> CompletableFuture.completedFuture("do stuff")
-        );
-    }
-
-}
-```
-
-:::
-
-## Project Loom
-
-As mentioned above, xef.ai is designed to work with Project Loom.
-All the functions of `AIScope` are returned as a `Future` for maximum backward compatibility until JDK8,
-but using Loom we can just use `get` to wait for the result. In order to use `VirtualThreads`, and benefit from
-non-blocking behavior of `VirtualThread` all you need to do is initialise the `AIScope` with a Loom compatible `ExecutorService`.
-
-```java
-package com.xebia.functional.xef.java.auto;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-
-public class Loom {
-
-  private static class Fact {
-    public String topic;
-    public String content;
-
-    @Override
-    public String toString() {
-      return "FactClass{" +
-              "topic='" + topic + '\'' +
-              ", content='" + content + '\'' +
-              '}';
-    }
-  }
-
-  public static void main(String[] args) throws ExecutionException, InterruptedException {
-    try (AIScope scope = new AIScope(Executors.newVirtualThreadPerTaskExecutor())) {
-      var fact1 = scope.prompt("A fascinating fact about you", Fact.class).get();
-      var fact2 = scope.prompt("An interesting fact about me", Fact.class).get();
-      var result = String.format("""
-                      |Fact 1: %s.
-                      |Fact 2: %s
-                      |Make your next move:""",
-              fact1,
-              fact2
-      );
-      System.out.println(result);
-    }
-  }
-}
-```

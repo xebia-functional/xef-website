@@ -41,65 +41,76 @@ export default function Home(): JSX.Element {
             <Tabs>
               <TabItem value="scala" label="Scala">
                 <CodeBlock language="scala" showLineNumbers>
-                  {`final case class Population(size: Int, description: String) derives SerialDescriptor, Decoder
+                  {`package examples
 
-final case class Image(description: String, url: String) derives SerialDescriptor, Decoder
+import com.xebia.functional.xef.scala.conversation.*
+import io.circe.Decoder
+import com.xebia.functional.xef.prompt.Prompt
 
-@main def runPopulation: Unit =
-  ai {
-    val cadiz: Population = prompt("Population of Cádiz, Spain.")
-    val seattle: Population = prompt("Population of Seattle, WA.")
-    println(s"The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
-    val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
-    println(s"Image \${img.description} available at \${img.url}")
-  }.getOrElse(println)`}
+private final case class TouristAttraction(name: String, location: String, history: String) derives SerialDescriptor, Decoder
+
+@main def runTouristAttraction: Unit = conversation {
+  val statueOfLiberty: TouristAttraction = prompt(Prompt("Statue of Liberty location and history."))
+  println(
+    s"""
+       |\${statueOfLiberty.name} is located in \${statueOfLiberty.location} and has the following history:
+       |\${statueOfLiberty.history}
+      """.stripMargin
+  )
+}
+`}
                 </CodeBlock>
               </TabItem>
               <TabItem value="kotlin" label="Kotlin">
                 <CodeBlock language="kotlin" showLineNumbers>
-                  {`@Serializable
-data class Population(val size: Int, val description: String)
+                  {`package examples
+
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI
+import com.xebia.functional.xef.conversation.llm.openai.prompt
+import kotlinx.serialization.Serializable
 
 @Serializable
-data class Image(val description: String, val url: String)
+data class TouristAttraction(val name: String, val location: String, val history: String)
 
 suspend fun main() =
-    ai {
-        val cadiz: Population = prompt("Population of Cádiz, Spain.")
-        val seattle: Population = prompt("Population of Seattle, WA.")
-        println("The population of Cádiz is \${cadiz.size} and the population of Seattle is \${seattle.size}")
-        val img: Image = image("A hybrid city of Cádiz, Spain and Seattle, US.")
-        println("Image \${img.description} available at \${img.url}")
-    }.getOrElse { println(it) }
-              `}
+  OpenAI.conversation {
+    val statueOfLiberty: TouristAttraction = prompt("Statue of Liberty location and history.")
+    println(
+      """|\${statueOfLiberty.name} is located in \${statueOfLiberty.location} and has the following history:
+                 |\${statueOfLiberty.history}"""
+        .trimMargin()
+    )
+  }
+`}
                 </CodeBlock>
               </TabItem>
               <TabItem value="java" label="Java">
                 <CodeBlock language="java" showLineNumbers>
-                  {`public class Example {
-  public static class Population {
-    @NotNull public int size;
-    @NotNull public String description;
-  }
+                  {`package example;
 
-  public static class Image {
-    @NotNull public String description;
-    @NotNull public String url;
-  }
+import com.xebia.functional.xef.conversation.*;
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
+import com.xebia.functional.xef.prompt.Prompt;
+
+import java.util.concurrent.ExecutionException;
+
+public class TouristAttractions {
+  
+  public record TouristAttraction(String name, String location, String history) {}
 
   public static void main(String[] args) throws ExecutionException, InterruptedException {
-    try (AIScope scope = new AIScope()) {
-      CompletableFuture<Population> cadiz = scope.prompt("Population of Cádiz, Spain.", Population.class);
-      CompletableFuture<Population> seattle = scope.prompt("Population of Seattle, WA.", Population.class);
-      cadiz.thenCombineAsync(seattle, (c, s) -> {
-          System.out.println("Seattle is " + (s.size / (double) c.size) + " times the size of Cádiz.");
-          return scope.prompt("Show me a picture of Seattle.", Image.class);
-        }).thenCompose(Function.identity())
-        .thenAccept(img -> System.out.println("Image " + img.description + " available at " + img.url))
-        .get();
+    try (var scope = OpenAI.conversation()) {
+      var statueOfLiberty = scope.prompt(
+        OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, 
+        new Prompt("Statue of Liberty location and history."), 
+        TouristAttraction.class
+      ).get()
+      System.out.println(
+        statueOfLiberty.name + "is located in " + statueOfLiberty.location +
+        " and has the following history: " + statueOfLiberty.history
+      );
     }
   }
-}
 `}
                 </CodeBlock>
               </TabItem>

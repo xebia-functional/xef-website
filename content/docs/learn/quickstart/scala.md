@@ -48,7 +48,7 @@ sbt -J--enable-preview <your-command>
   </TabItem>
 </Tabs>
 
-By default, the `ai` block connects to [OpenAI](https://platform.openai.com/).
+By default, the `conversation` block connects to [OpenAI](https://platform.openai.com/).
 To use their services you should provide the corresponding API key in the `OPENAI_TOKEN`
 environment variable, and have enough credits.
 
@@ -78,50 +78,18 @@ Read our [_Data Transmission Disclosure_](https://github.com/xebia-functional/xe
 ## Your first prompt
 
 After adding the library to your project,
-you get access to the `ai` function, which is your gate to the modern AI world.
+you get access to the `conversation` function, which is your gate to the modern AI world.
 Inside of it, you can _prompt_ for information, which means posing the question to an LLM
 (Large Language Model). The easiest way is to just get the information back as a string.
 
 ```scala
 import com.xebia.functional.xef.scala.auto.*
 
-@main def runBook: Unit = ai {
+@main def runBook: Unit = conversation {
   val topic: String = "functional programming"
-  promptMessage(s"Give me a selection of books about $topic")
-}.getOrElse(ex => println(ex.getMessage))
-```
-
-In the example above we _execute_ the `ai` block with `getOrElse`, so in case an exception
-is thrown (for example, if your API key is not correct), we are handing the error by printing
-the reason of the error.
-
-In the next examples we'll write functions that rely on `ai`'s DSL functionality,
-but without actually extracting the values yet using `getOrThrow` or `getOrElse`.
-We'll eventually call this functions from an `ai` block as we've shown above, and
-this allows us to build larger pipelines, and only extract the final result at the end.
-
-This can be done by either using a context parameters or function _using_ `AIScope`.
-Let's compare the two:
-
-```scala
-def book(topic: String)(using scope: AIScope): List[String] =
-  promptMessage(s"Give me a selection of books about $topic")
-
-def book(topic: String): AIScope ?=> List[String] =
-  promptMessage(s"Give me a selection of books about $topic")
-```
-
-Using the type alias `AI`, defined in `com.xebia.functional.xef.scala.auto` as:
-
-```scala
-type AI[A] = AIScope ?=> A
-```
-
-book function can be written in this way:
-
-```scala
-def book(topic: String): AI[List[String]] = 
-  promptMessage(s"Give me a selection of books about $topic")
+  val result = promptMessage(s"Give me a selection of books about $topic")
+  println(result)
+}
 ```
 
 ## Structure
@@ -132,19 +100,20 @@ using a _custom type_. The library takes care of instructing the LLM on building
 a structure, and deserialize the result back for you.
 
 ```scala
-import com.xebia.functional.xef.scala.auto.*
+import com.xebia.functional.xef.scala.conversation.*
 import io.circe.Decoder
+import com.xebia.functional.xef.prompt.Prompt
 
-private final case class Book(name: String, author: String, summary: String) derives SerialDescriptor, Decoder
+case class Book(name: String, author: String, summary: String) derives SerialDescriptor, Decoder
 
-def summarizeBook(title: String, author: String): AI[Book] =
-  prompt(s"$title by $author summary.")
+def summarizeBook(title: String, author: String)(using conversation: ScalaConversation): Book =
+  prompt(Prompt(s"$title by $author summary."))
 
 @main def runBook: Unit =
-  ai {
+  conversation {
     val toKillAMockingBird = summarizeBook("To Kill a Mockingbird", "Harper Lee")
     println(s"${toKillAMockingBird.name} by ${toKillAMockingBird.author} summary:\n ${toKillAMockingBird.summary}")
-  }.getOrElse(ex => println(ex.getMessage))
+  }
 ```
 
 xef.ai for Scala uses `xef-core`, which it's based on Kotlin. Hence, the core 
@@ -152,6 +121,34 @@ reuses [Kotlin's common serialization](https://kotlinlang.org/docs/serialization
 Scala uses [circe](https://github.com/circe/circe) to derive the required serializable instance. 
 The LLM is usually able to detect which kind of information should
 go on each field based on its name (like `title` and `author` above).
+
+For those cases where the LLM is not able to infer the type, you can use the `@Description` annotation:
+
+## @Description annotations
+
+```scala
+import com.xebia.functional.xef.scala.conversation.Description
+import com.xebia.functional.xef.scala.conversation.*
+import io.circe.Decoder
+import com.xebia.functional.xef.prompt.Prompt
+
+@Description("A book")
+case class Book(
+                 @Description("the name of the book") name: String,
+                 @Description("the author of the book") author: String,
+                 @Description("A 50 word paragraph with a summary of this book") summary: String
+               ) derives SerialDescriptor, Decoder
+
+def summarizeBook(title: String, author: String)(using conversation: ScalaConversation): Book =
+  prompt(Prompt(s"$title by $author summary."))
+
+@main def runBook: Unit =
+  conversation {
+    val toKillAMockingBird = summarizeBook("To Kill a Mockingbird", "Harper Lee")
+    println(s"${toKillAMockingBird.name} by ${toKillAMockingBird.author} summary:\n ${toKillAMockingBird.summary}")
+  }
+```  
+
 
 ## Context
 
@@ -170,18 +167,23 @@ and make its response part of the context. One such agent is `search`, which use
 search service to enrich that context.
 
 ```scala
-import com.xebia.functional.xef.scala.auto.*
-import com.xebia.functional.xef.scala.agents.DefaultSearch
+import com.xebia.functional.xef.reasoning.serpapi.Search
+import com.xebia.functional.xef.scala.conversation.*
+import com.xebia.functional.xef.conversation.llm.openai.OpenAI
+import io.circe.Decoder
+import com.xebia.functional.xef.prompt.Prompt
 
-private def getQuestionAnswer(question: String): AI[List[String]] =
-  contextScope(DefaultSearch.search("Weather in Cádiz, Spain")) {
-    promptMessage(question)
+private final case class MealPlanRecipe(name: String, ingredients: List[String]) derives SerialDescriptor, Decoder
+
+private final case class MealPlan(name: String, recipes: List[MealPlanRecipe]) derives SerialDescriptor, Decoder
+
+@main def runMealPlan: Unit =
+  conversation {
+    val search = Search(OpenAI.FromEnvironment.DEFAULT_CHAT, summon[ScalaConversation], 3)
+    addContext(search.search("gall bladder stones meals").get())
+    val mealPlan = prompt[MealPlan](Prompt("Meal plan for the week for a person with gall bladder stones that includes 5 recipes."))
+    println(mealPlan)
   }
-
-@main def runWeather: Unit = ai {
-  val question = "Knowing this forecast, what clothes do you recommend I should wear if I live in Cádiz?"
-  println(getQuestionAnswer(question).mkString("\n"))
-}
 ```
 
 :::note Better vector stores
