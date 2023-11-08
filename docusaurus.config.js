@@ -134,6 +134,18 @@ const createConfig = async () => {
               ],
             },
             {
+              type: 'dropdown',
+              label: 'Integrations',
+              position: 'right',
+              to: '/learn/integrations',
+              items: [
+                {
+                  label: 'SQL',
+                  to: '/learn/integrations/SQL',
+                },
+              ],
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/xebia-functional/xef',
               position: 'right',
@@ -153,6 +165,10 @@ const createConfig = async () => {
                   label: 'Quickstart',
                   to: '/learn/quickstart',
                 },
+                {
+                  label: 'Integrations',
+                  to: '/learn/integrations',
+                },
               ],
             },
             {
@@ -169,6 +185,15 @@ const createConfig = async () => {
                 {
                   label: 'Examples',
                   to: '/learn/examples',
+                },
+              ],
+            },
+            {
+              title: 'Integrations',
+              items: [
+                {
+                  label: 'SQL',
+                  to: '/learn/integrations/SQL',
                 },
               ],
             },
