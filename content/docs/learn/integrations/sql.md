@@ -1,5 +1,5 @@
 ---
-id: integration-sql
+id: sql
 title: SQL
 sidebar_position: 1
 description: The SQL module facilitates SQL query generation and execution.
