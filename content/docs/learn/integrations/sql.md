@@ -181,9 +181,9 @@ answer1 = AnswerResponse(
           Column(name=customer_name, type=VARCHAR)
         ),
         rows = listOf(
-            Row(listOf("1", "Smartphone", "5", "150.00", "Electronics", "2023-11-03", "John Doe")),
-            Row(listOf("2", "Laptop", "3", "75.00", "Electronics", "2023-11-03", "Jane Smith")),
-            Row(listOf("3", "Tablet", "2", "30.00", "Electronics", "2023-11-03", "Bob Johnson"))
+            listOf("1", "Smartphone", "5", "150.00", "Electronics", "2023-11-03", "John Doe"),
+            listOf("2", "Laptop", "3", "75.00", "Electronics", "2023-11-03", "Jane Smith"),
+            listOf("3", "Tablet", "2", "30.00", "Electronics", "2023-11-03", "Bob Johnson")
         )
     ),
     detailedTable = null
@@ -201,7 +201,7 @@ answer2 = AnswerResponse(
             Column("total_earnings", "DECIMAL")
         ),
         rows = listOf(
-            Row(listOf("255.00"))
+            listOf("255.00")
         )
     ),
     detailedTable = null
