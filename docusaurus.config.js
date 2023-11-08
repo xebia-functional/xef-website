@@ -141,7 +141,7 @@ const createConfig = async () => {
               items: [
                 {
                   label: 'SQL',
-                  to: '/learn/integrations/SQL',
+                  to: '/learn/integrations/sql',
                 },
               ],
             },
@@ -193,7 +193,7 @@ const createConfig = async () => {
               items: [
                 {
                   label: 'SQL',
-                  to: '/learn/integrations/SQL',
+                  to: '/learn/integrations/sql',
                 },
               ],
             },
