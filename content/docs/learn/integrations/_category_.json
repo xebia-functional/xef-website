@@ -1,0 +1,9 @@
+{
+  "label": "Integrations",
+  "position": 3,
+  "customProps": {
+    "icon": "icon-integrations.svg",
+    "description": "At xef.ai, we have multiple integrations, and we'll list the ones we release here.",
+    "overview": true
+  }
+}

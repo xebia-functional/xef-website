@@ -1,7 +1,7 @@
 ---
 id: examples
 title: More examples
-sidebar_position: 3
+sidebar_position: 4
 description: Explore all that xef.ai offers
 ---
 
