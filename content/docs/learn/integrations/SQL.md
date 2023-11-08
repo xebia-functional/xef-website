@@ -147,9 +147,9 @@ answer1 = AnswerResponse(
             Column("customer_name", "VARCHAR(255)")
         ),
         rows = listOf(
-            listOf("1", "Smartphone", "5", "150.00", "Electronics", "2023-11-03", "John Doe"),
-            listOf("2", "Laptop", "3", "75.00", "Electronics", "2023-11-03", "Jane Smith"),
-            listOf("3", "Tablet", "2", "30.00", "Electronics", "2023-11-03", "Bob Johnson")
+            Row(listOf("1", "Smartphone", "5", "150.00", "Electronics", "2023-11-03", "John Doe")),
+            Row(listOf("2", "Laptop", "3", "75.00", "Electronics", "2023-11-03", "Jane Smith")),
+            Row(listOf("3", "Tablet", "2", "30.00", "Electronics", "2023-11-03", "Bob Johnson"))
         )
     ),
     detailedTable = null
@@ -167,7 +167,7 @@ answer2 = AnswerResponse(
             Column("total_earnings", "NUMERIC(10, 2)")
         ),
         rows = listOf(
-            listOf("5000.00")
+            Row(listOf(("5000.00"))
         )
     ),
     detailedTable = null
