@@ -39,28 +39,6 @@ export default function Home(): JSX.Element {
           <div className={`container ${styles.codeContainer}`}>
             <h1 className="margin-bottom--lg">Discover its potential</h1>
             <Tabs>
-              <TabItem value="scala" label="Scala">
-                <CodeBlock language="scala" showLineNumbers>
-                  {`package examples
-
-import com.xebia.functional.xef.scala.conversation.*
-import io.circe.Decoder
-import com.xebia.functional.xef.prompt.Prompt
-
-private final case class TouristAttraction(name: String, location: String, history: String) derives SerialDescriptor, Decoder
-
-@main def runTouristAttraction: Unit = conversation {
-  val statueOfLiberty: TouristAttraction = prompt(Prompt("Statue of Liberty location and history."))
-  println(
-    s"""
-       |\${statueOfLiberty.name} is located in \${statueOfLiberty.location} and has the following history:
-       |\${statueOfLiberty.history}
-      """.stripMargin
-  )
-}
-`}
-                </CodeBlock>
-              </TabItem>
               <TabItem value="kotlin" label="Kotlin">
                 <CodeBlock language="kotlin" showLineNumbers>
                   {`package examples
@@ -80,36 +58,6 @@ suspend fun main() =
                  |\${statueOfLiberty.history}"""
         .trimMargin()
     )
-  }
-`}
-                </CodeBlock>
-              </TabItem>
-              <TabItem value="java" label="Java">
-                <CodeBlock language="java" showLineNumbers>
-                  {`package example;
-
-import com.xebia.functional.xef.conversation.*;
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI;
-import com.xebia.functional.xef.prompt.Prompt;
-
-import java.util.concurrent.ExecutionException;
-
-public class TouristAttractions {
-  
-  public record TouristAttraction(String name, String location, String history) {}
-
-  public static void main(String[] args) throws ExecutionException, InterruptedException {
-    try (var scope = OpenAI.conversation()) {
-      var statueOfLiberty = scope.prompt(
-        OpenAI.FromEnvironment.DEFAULT_SERIALIZATION, 
-        new Prompt("Statue of Liberty location and history."), 
-        TouristAttraction.class
-      ).get()
-      System.out.println(
-        statueOfLiberty.name + "is located in " + statueOfLiberty.location +
-        " and has the following history: " + statueOfLiberty.history
-      );
-    }
   }
 `}
                 </CodeBlock>
