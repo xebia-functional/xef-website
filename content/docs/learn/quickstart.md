@@ -1,16 +1,15 @@
 ---
-id: kotlin
-title: Kotlin
-sidebar_position: 1
+title: Quickstart
 description: Get xef.ai up and running in Kotlin
+sidebar_position: 2
 sidebar_custom_props:
-  icon: kotlin-icon.svg
+  icon: icon-quickstart.svg
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# <decorated-text icon="kotlin-icon.svg" title="Quickstart - Kotlin" />
+# <decorated-text icon="icon-quickstart.svg" title="Quickstart" />
 
 ## Getting the libraries
 

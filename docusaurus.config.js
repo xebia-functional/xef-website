@@ -110,28 +110,9 @@ const createConfig = async () => {
               position: 'right',
             },
             {
-              type: 'dropdown',
               label: 'Quickstart',
-              position: 'right',
               to: '/learn/quickstart',
-              items: [
-                {
-                  label: 'Kotlin',
-                  to: '/learn/quickstart/kotlin',
-                },
-                {
-                  label: 'Scala',
-                  to: '/learn/quickstart/scala',
-                },
-                {
-                  label: 'Java',
-                  to: '/learn/quickstart/java',
-                },
-                {
-                  label: 'Examples',
-                  to: '/learn/examples',
-                },
-              ],
+              position: 'right',
             },
             {
               type: 'dropdown',
@@ -168,23 +149,6 @@ const createConfig = async () => {
                 {
                   label: 'Integrations',
                   to: '/learn/integrations',
-                },
-              ],
-            },
-            {
-              title: 'Quickstart',
-              items: [
-                {
-                  label: 'Kotlin',
-                  to: '/learn/quickstart/kotlin',
-                },
-                {
-                  label: 'Scala',
-                  to: '/learn/quickstart/scala',
-                },
-                {
-                  label: 'Examples',
-                  to: '/learn/examples',
                 },
               ],
             },
