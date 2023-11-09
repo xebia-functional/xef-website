@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   sodipodi:docname="icon-sql.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.76771465"
+     inkscape:cx="330.20081"
+     inkscape:cy="451.99086"
+     inkscape:window-width="1952"
+     inkscape:window-height="1239"
+     inkscape:window-x="715"
+     inkscape:window-y="60"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#41aeee;fill-opacity:1;stroke-width:0.264583"
+       id="path2"
+       cx="105"
+       cy="78.76107"
+       rx="80.170021"
+       ry="38.087894" />
+    <ellipse
+       style="fill:#41aeee;fill-opacity:1;stroke-width:0.264583"
+       id="path2-3"
+       cx="105"
+       cy="216.73146"
+       rx="80.170021"
+       ry="38.087894" />
+    <rect
+       style="fill:#41aeee;fill-opacity:1;stroke-width:0.262643"
+       id="rect3"
+       width="160.34001"
+       height="138.07332"
+       x="24.829979"
+       y="78.76107" />
+    <ellipse
+       style="fill:#bedcee;fill-opacity:1;stroke-width:0.264583"
+       id="path1"
+       cx="105"
+       cy="76.906601"
+       rx="63.622475"
+       ry="27.959656" />
+    <text
+       xml:space="preserve"
+       style="font-size:59.5787px;line-height:0;fill:#ffffff;fill-opacity:1;stroke-width:0.620611"
+       x="38.206589"
+       y="179.65674"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:59.5787px;line-height:0;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.620611"
+         x="44.906589"
+         y="190.65674">SQL</tspan></text>
+  </g>
+</svg>
