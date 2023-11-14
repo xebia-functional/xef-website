@@ -1,9 +1,0 @@
-{
-  "label": "Quickstart",
-  "position": 2,
-  "customProps": {
-    "icon": "icon-quickstart.svg",
-    "description": "xef.ai provides support for both Kotlin and Scala",
-    "overview": true
-  }
-}
