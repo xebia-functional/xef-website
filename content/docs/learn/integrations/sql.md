@@ -209,4 +209,4 @@ answer2 = AnswerResponse(
 )
 ```
 
-If you want to see a more complete example you can go [here](https://github.com/xebia-functional/xef/tree/main/examples/kotlin/src/main/kotlin/com/xebia/functional/xef/conversation/sql/MysqlExample.kt).
+If you want to see a more complete example you can go [here](https://github.com/xebia-functional/xef/tree/main/examples/src/main/kotlin/com/xebia/functional/xef/conversation/sql/MysqlExample.kt).
