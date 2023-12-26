@@ -13,7 +13,7 @@ The site is built through `node` and `npm` (included in Node.js), and the minimu
 
 You can check your version by going to your terminal and performing:
 
-```
+```bash
 node -v
 ```
 
@@ -24,22 +24,22 @@ We recommend the use of a tool like [NVM](https://github.com/nvm-sh/nvm) which c
 
 ### Installation
 
-```
-$ npm install
+```bash
+npm install
 ```
 
 ### Local Development
 
-```
-$ npm run start
+```bash
+npm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
-```
-$ npm run build
+```bash
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.

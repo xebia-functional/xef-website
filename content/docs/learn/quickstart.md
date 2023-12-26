@@ -60,25 +60,31 @@ Read our [_Data Transmission Disclosure_](https://github.com/xebia-functional/xe
 
 ## Your first prompt
 
-After adding the library to your project you get access to the `conversation` function, which is your port of entry to the modern AI world.
+After adding the library to your project you get access to the `AI` function, which is your port of entry to the modern AI world.
 Inside of it, you can _prompt_ for information, which means posing the question to an LLM
-(Large Language Model). The easiest way is to just get the information back as a string.
+(Large Language Model). 
+
+The AI function in Xef DSL is a versatile tool for Kotlin developers, leveraging the power of AI models, including GPT-4 and others, for dynamic type inference and serialization. 
+This function can interpret string inputs and return instances of various Kotlin data types, such as classes, enums, sealed classes, and more. 
+Additionally, it supports different AI models and shared context through conversations. 
+
+The `AI` function  is available in xef since 0.0.5-alpha.20.
+
+The easiest way to get started is to just get the information back as a string.
 
 
 <Tabs>
   <TabItem value="code" label="Code" default>
 
 ```kotlin
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
-import com.xebia.functional.xef.conversation.llm.openai.promptMessage
+import com.xebia.functional.xef.AI
 
 suspend fun main() {
   println(books("Artificial Intelligence"))
 }
 
-suspend fun books(topic: String): String = OpenAI.conversation {
-  promptMessage("Give me a selection of books about $topic")
-}
+suspend fun books(topic: String): String = 
+  AI("Give me a selection of books about $topic")
 ```
   </TabItem>
 
@@ -121,8 +127,7 @@ a structure, and deserialize the result back for you.
 <TabItem value="code" label="Code" default>
 
 ```kotlin
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
-import com.xebia.functional.xef.conversation.llm.openai.prompt
+import com.xebia.functional.xef.AI
 import kotlinx.serialization.Serializable
 
 suspend fun main() {
@@ -139,9 +144,9 @@ data class Books(val books: List<Book>)
 @Serializable
 data class Book(val title: String, val author: String)
 
-suspend fun books(topic: String): Books = OpenAI.conversation {
-  prompt("Give me a selection of books about $topic")
-}
+suspend fun books(topic: String): Books = 
+  AI("Give me a selection of books about $topic")
+
 ```
 </TabItem>
   
@@ -178,8 +183,7 @@ go on each field based on its name (like `title` and `author` above). For those 
 
 ```kotlin
 import com.xebia.functional.xef.conversation.Description
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
-import com.xebia.functional.xef.conversation.llm.openai.prompt
+import com.xebia.functional.xef.AI
 import kotlinx.serialization.Serializable
 
 suspend fun main() {
@@ -209,9 +213,9 @@ data class Book(
   val summary: String
 )
 
-suspend fun books(topic: String): Books = OpenAI.conversation {
-  prompt("Give me a selection of books about $topic")
-}
+suspend fun books(topic: String): Books = 
+  AI("Give me a selection of books about $topic")
+
 ```
 </TabItem>
 
@@ -245,11 +249,103 @@ All the types and properties annotated with `@Description` will be used to build
 json schema `description` fields used for the LLM to reply with the right format and data
 in order to deserialize the result back. 
 
+## 1. Overview of `AI` Function
+
+The `AI` function in Xef DSL empowers Kotlin developers to harness advanced AI models for dynamic data processing and decision-making. It analyzes a given string input and produces an output of the specified Kotlin data type, offering significant flexibility and power for various applications.
+
+### Key Features
+- **Dynamic Type Inference**: Automatically determines the appropriate Kotlin data type based on the input string.
+- **Support for Various Data Types**: Handles classes, enums, sealed classes, lists, primitives, and more.
+- **Configurable AI Models**: Default to GPT-4 but can be configured to use other models.
+- **Shared Context Capability**: Maintains conversation history for context-aware responses.
+- **Asynchronous & Streaming Operation**: Designed to work seamlessly within Kotlin's coroutines framework.
+
+## 2. Classes and functions
+
+The `AI` function can be used to instantiate complex types, making it ideal for scenarios requiring detailed data structuring and analysis.
+
+### Example: Environmental Analysis
+
+<Tabs>
+
+<TabItem value="code" label="Code" default>
+
+```kotlin
+@Serializable
+data class EnvironmentalData(
+    val airQualityIndex: Int,
+    val dominantPollutants: List<String>,
+    val recommendations: String
+)
+
+suspend fun main() {
+    val environmentReport: EnvironmentalData = 
+      AI("Generate a detailed environmental report for New York City")
+    println(environmentReport)
+}
+```
+
+</TabItem>
+</Tabs>
+
+## 4. Choices, Sealed Classes, and Enums
+
+Sealed classes in Kotlin represent restricted class hierarchies. The `AI` function can intelligently choose the appropriate subclass based on the input.
+
+### Example: Financial Advice System
+
+<Tabs>
+
+<TabItem value="code" label="Code" default>
+
+```kotlin
+@Serializable
+sealed class FinancialAdvice {
+    data class Investment(val strategy: String, val riskLevel: String) : FinancialAdvice()
+    data class Savings(val tips: List<String>, val optimalSavingsRate: Double) : FinancialAdvice()
+}
+
+suspend fun getFinancialAdvice(scenario: String): FinancialAdvice = 
+  AI("Provide financial advice for $scenario")
+
+suspend fun main() {
+    val advice = getFinancialAdvice("planning for early retirement")
+    println(advice)
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+The `AI` function can also be effectively used to select enumeration values based on the provided context, which is especially useful for categorization tasks.
+At the moment the `AI` function supports enums whose values can be encoded as single tokens for max efficiency and lower latency.
+If your enum values are not single tokens, you can use the Sealed Class pattern instead.
+
+### Example: Sentiment Analysis
+
+<Tabs>
+
+<TabItem value="code" label="Code" default>
+
+```kotlin
+enum class Sentiment {
+    positive, negative
+}
+
+suspend fun main() {
+    val sentiment = AI<Sentiment>("I like Xef!")
+    println(sentiment) // Expected output: positive
+}
+```
+
+</TabItem>
+</Tabs>
 
 ## Prompts
 
-The function `books` uses naive string interpolation to make the topic part of the question
-to the LLM. As the prompt gets bigger, though, you may want to break it into smaller parts.
+As the prompt gets bigger or more nuance you may want to break it into smaller parts.
+Prompts can hold messages, model and other configuration.
 We use the [builder pattern](https://kotlinlang.org/docs/type-safe-builders.html) to include messages and 
 other prompts which get built before the chat completions endpoint.
 
@@ -258,41 +354,68 @@ other prompts which get built before the chat completions endpoint.
 <TabItem value="code" label="Code" default>
 
 ```kotlin
-import com.xebia.functional.xef.conversation.Conversation
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
-import com.xebia.functional.xef.conversation.llm.openai.prompt
 import com.xebia.functional.xef.prompt.Prompt
 import com.xebia.functional.xef.prompt.templates.system
 import com.xebia.functional.xef.prompt.templates.assistant
 import com.xebia.functional.xef.prompt.templates.user
 import kotlinx.serialization.Serializable
-
-suspend fun main() {
-  val result = OpenAI.conversation {
-    books("Cooking")
-  }
-
-  result.books.forEach { println("""
-    Title: ${it.title}
-    Author: ${it.author}
-  """.trimIndent()) }
-}
+import com.xebia.functional.xef.AI
+import ai.xef.openai.StandardModel
+import com.xebia.functional.openai.models.CreateChatCompletionRequestModel
+import com.xebia.functional.xef.conversation.Description
+import com.xebia.functional.xef.conversation.MessagePolicy
+import com.xebia.functional.xef.conversation.MessagesFromHistory
+import com.xebia.functional.xef.conversation.MessagesToHistory
+import com.xebia.functional.xef.prompt.configuration.PromptConfiguration
 
 @Serializable
-data class Books(val books: List<Book>)
+@Description("A list of books")
+data class Books(
+  @Description("The list of books")
+  val books: List<Book>
+)
 
 @Serializable
-data class Book(val title: String, val author: String)
+@Description("A book")
+data class Book(
+  @Description("The title of the book")
+  val title: String,
+  @Description("The author of the book")
+  val author: String,
+  @Description("A 20 word summary of the book")
+  val summary: String
+)
 
-suspend fun Conversation.books(topic: String): Books {
-  val myCustomPrompt = Prompt {
+
+suspend fun books(topic: String): Books {
+  val model = StandardModel(CreateChatCompletionRequestModel.gpt_3_5_turbo_16k_0613)
+
+  val myCustomPrompt = Prompt(
+    model = model,
+    configuration = PromptConfiguration {
+      temperature = 0.0
+      maxTokens = 100
+      messagePolicy = MessagePolicy(
+        historyPercent = 50,
+        historyPaddingTokens = 100,
+        contextPercent = 50,
+        addMessagesFromConversation = MessagesFromHistory.ALL,
+        addMessagesToConversation = MessagesToHistory.ALL
+      )
+    }) {
     +system("You are an assistant in charge of providing a selection of books about topics provided")
     +assistant("I will provide relevant suggestions of books and follow the instructions closely.")
     +user("Give me a selection of books about $topic")
   }
 
-  return prompt(myCustomPrompt)
+  return AI(myCustomPrompt)
 }
+
+suspend fun main() {
+  val books = books("Cooking")
+  println(books)
+}
+
 ```
 </TabItem>
 
@@ -346,21 +469,43 @@ search service to enrich that context.
 <TabItem value="code" label="Code" default>
 
 ```kotlin
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
-import com.xebia.functional.xef.conversation.llm.openai.promptMessage
+package com.xebia.functional.xef.conversation.contexts
+
+import ai.xef.openai.StandardModel
+import com.xebia.functional.openai.apis.EmbeddingsApi
+import com.xebia.functional.openai.models.CreateChatCompletionRequestModel
+import com.xebia.functional.xef.AI
+import com.xebia.functional.xef.conversation.Conversation
+import com.xebia.functional.xef.conversation.Description
+import com.xebia.functional.xef.llm.fromEnvironment
 import com.xebia.functional.xef.prompt.Prompt
+import com.xebia.functional.xef.prompt.templates.user
 import com.xebia.functional.xef.reasoning.serpapi.Search
+import com.xebia.functional.xef.store.LocalVectorStore
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Recommendation(
+  @Description("The location")
+  val location: String,
+  @Description("The weather forecast")
+  val weather: String,
+  @Description("The recommended clothing to wear with this kind of weather, min 50 words, required not blank")
+  val recommendation: String
+)
 
 suspend fun main() {
-  val question = Prompt("Knowing this forecast, what clothes do you recommend I should wear?")
-
-  OpenAI.conversation {
-    val search = Search(OpenAI.fromEnvironment().DEFAULT_CHAT, this)
-    addContext(search("Weather in Cádiz, Spain"))
-    val answer = promptMessage(question)
-    println(answer)
+  val model = StandardModel(CreateChatCompletionRequestModel.gpt_4_1106_preview)
+  val question = Prompt(model) {
+    +user("Based on this weather, what do you recommend I should wear?")
   }
+  val conversation = Conversation(LocalVectorStore(fromEnvironment(::EmbeddingsApi)))
+  val search = Search(model = model, scope = conversation)
+  conversation.addContext(search("Weather in Cádiz, Spain"))
+  val recommendation = AI<Recommendation>(question, conversation = conversation)
+  println(recommendation)
 }
+
 ```
 </TabItem>
 </Tabs>    
@@ -377,12 +522,3 @@ dependencies {
 ```shell
 env SERP_API_KEY=<your-api-key>
 ```
-
-:::note Better vector stores
-
-The underlying mechanism of the context is a _vector store_, a data structure which
-saves a set of strings, and is able to find those similar to another given one.
-By default xef.ai uses an _in-memory_ vector store, since it provides maximum
-compatibility across platforms. However, if you foresee your context growing above
-the hundreds of elements, you may consider switching to another alternative, like
-Lucene or PostgreSQL also supported by xef.
