@@ -68,6 +68,7 @@ The AI function in Xef DSL is a versatile tool for Kotlin developers, leveraging
 This function can interpret string inputs and return instances of various Kotlin data types, such as classes, enums, sealed classes, and more. 
 Additionally, it supports different AI models and shared context through conversations. 
 
+The `AI` function  is available in xef since 0.0.5-alpha.20.
 
 The easiest way to get started is to just get the information back as a string.
 
