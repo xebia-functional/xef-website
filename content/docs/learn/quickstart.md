@@ -23,7 +23,6 @@ repositories {
 
 dependencies {
     implementation("com.xebia:xef-core:<version>")
-    implementation("com.xebia:xef-openai:<version>")
 }
 ```
 
@@ -31,7 +30,7 @@ We publish all libraries at once under the same version, so
 [version catalogs](https://docs.gradle.org/current/userguide/platforms.html#sec:sharing-catalogs)
 could be useful.
 
-By default, the `OpenAI.conversation` block connects to [OpenAI](https://platform.openai.com/).
+By default, Xef connects to [OpenAI](https://platform.openai.com/).
 To use their services you should provide the corresponding API key in the `OPENAI_TOKEN`
 environment variable, and have enough credits.
 

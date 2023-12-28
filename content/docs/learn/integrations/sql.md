@@ -27,7 +27,6 @@ repositories {
 
 dependencies {
     implementation("com.xebia:xef-core:<version>")
-    implementation("com.xebia:xef-openai:<version>")
     implementation("com.xebia:xef-sql:<version>")
 }
 ```
@@ -36,7 +35,7 @@ We publish all libraries at once under the same version, so
 [version catalogs](https://docs.gradle.org/current/userguide/platforms.html#sec:sharing-catalogs)
 could be useful.
 
-By default, the `OpenAI.conversation` block connects to [OpenAI](https://platform.openai.com/).
+By default, Xef connects to [OpenAI](https://platform.openai.com/).
 To use their services you should provide the corresponding API key in the `OPENAI_TOKEN`
 environment variable, and have enough credits.
 
@@ -104,7 +103,7 @@ Once the configuration is set, you can generate and execute SQL queries based on
 val prompt = "How many users are active?"
 val tableNames = listOf("users")
 
-OpenAI.conversation {
+Conversation {
   SQL.fromJdbcConfig(jdbcConfig) {
     val answer = promptQuery(prompt, tableNames, null)
   }
@@ -130,9 +129,12 @@ The module is able to get the schema from the table without the need to specify 
 
 However, in order to make specific queries efficiently, it will be necessary to provide a more extensive context, such as possible enumerations or values that cannot be inferred from the table schema.
 ```kotlin
-import com.xebia.functional.xef.conversation.llm.openai.OpenAI
 import com.xebia.functional.xef.sql.jdbc.JdbcConfig
 import com.xebia.functional.xef.sql.SQL
+import ai.xef.openai.StandardModel
+import com.xebia.functional.openai.apis.ChatApi
+import com.xebia.functional.openai.models.CreateChatCompletionRequestModel
+import com.xebia.functional.xef.conversation.Conversation
 
 suspend fun main() {
   val mysql = JdbcConfig(
@@ -142,7 +144,8 @@ suspend fun main() {
     password = "top_secret_password",
     port = 3306,
     database = "my_db",
-    model = OpenAI().DEFAULT_SERIALIZATION
+    model = StandardModel(CreateChatCompletionRequestModel.gpt_4_1106_preview),
+    chatApi = fromEnvironment(::ChatApi)
   )
 
   val context = """
@@ -155,7 +158,7 @@ suspend fun main() {
         - The field "customer_name" represents the name of the customer who made the purchase.
     """.trimIndent()
 
-  OpenAI.conversation {
+  Conversation {
     SQL.fromJdbcConfig(mysql) {
       val answer1 = promptQuery("Show me all the sales made today", listOf("sales"), context)
       val answer2 = promptQuery("How much money has been earned in sales this month?", listOf("sales"), context)
